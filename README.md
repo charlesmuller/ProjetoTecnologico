@@ -19,3 +19,10 @@ API Guia dos Quadrinhos (ver se é possível fazer)
 
 Ideia
 --- https://www.youtube.com/watch?v=_OYW_rQzi3E
+
+- cURL 
+  - sudo apt-get install php-curl
+  - Ativar: sudo phpenmod curl
+  - Desativar: sudo phpdismod curl
+  - Reestartar o apache: sudo /etc/init.d/apache2 restart
+  - Verificar se está ativo: php -i | grep -i curl
