@@ -1,5 +1,9 @@
 # Projeto Tecnologico
 
+### Para executar o projeto:
+    - Vá até o terminal linux e dentro da pasta principal /projeto rodar o comando php artisan serve
+    
+
 Gerenciador de Coleção de HQ
 - Features
 	- Busca por histórias (número da edição, ano de lançamento, titulos, personagens etc);
@@ -19,6 +23,7 @@ API Guia dos Quadrinhos (ver se é possível fazer)
 
 Ideia
 --- https://www.youtube.com/watch?v=_OYW_rQzi3E
+--- https://greensock.com/gsap/
 
 - cURL 
   - sudo apt-get install php-curl
