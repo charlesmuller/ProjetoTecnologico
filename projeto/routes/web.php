@@ -17,6 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/ola', function() {
-    echo 'Olá mundo!';
+Route::get('/login', function() {
+    return view('loginView');
 });
