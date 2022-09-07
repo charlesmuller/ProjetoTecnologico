@@ -20,3 +20,7 @@ Route::get('/', function () {
 Route::get('/login', function() {
     return view('loginView');
 });
+
+Route::get('/cadastro', function() {
+    return view('cadastroView');
+});
