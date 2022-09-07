@@ -1,21 +1,24 @@
 <html lang="pt-br">
 <head>
     <meta charset="utf-8">
-<!--    <link href="{{ URL::asset('public/css/style.css') }}" rel="stylesheet" type="text/css">-->
-    <link rel="stylesheet" href="<?php echo asset('public/css/style.css')?>" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">    <title>Atividade Avaliativa</title>
 </head>
 <body>
-<div class="formulario">
-    <form method="post" action="retornoadm.php">
+<form method="post" style="width: 420px; margin: 150px auto 0px auto">
         <h1>Área de administrador</h1>
-        <input type="text" name="login_user" placeholder="Seu usuário" autofocus="" required="">
-        <input type="password" name="senha_user" placeholder="Sua senha" required="">
-        <input type="reset"  name="limpar" value="Limpar campos">
-        <input type="submit" name="entrar" value="ENTRAR">
-        <a href="index.html">Não é administrador? <BR> <strong>CLIQUE AQUI PARA VOLTAR A PAGINA DE LOGIN</strong></a>
-
-    </form>
-</div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Endereço de Email</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" autofocus="" aria-describedby="emailHelp" placeholder="Seu Email" required="">
+            <small id="emailHelp" class="form-text text-muted">Nós nunca compartilhamos seu email.</small>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Senha</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+        </div>
+        <button type="submit" name="entrar" class="btn btn-primary">ENTRAR</button>
+        <!--        ideia para retorno     -->
+        <BR><BR><a href="">Não é administrador? <BR> <strong>CLIQUE AQUI PARA VOLTAR A PAGINA DE LOGIN</strong></a>
+    </div>
+</form>
 </body>
 </html>
