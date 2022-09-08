@@ -18,9 +18,13 @@ Route::get('/', function () {
 });
 
 Route::get('/login', function() {
-    return view('loginView');
+    return view('login.index');
 });
 
 Route::get('/cadastro', function() {
-    return view('cadastroView');
+    return view('cadastro.index');
+});
+
+Route::get('/colecao', function() {
+    return view('colecao.index');
 });
