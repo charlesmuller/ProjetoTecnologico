@@ -5,10 +5,20 @@
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
           crossorigin="anonymous">
     <title>{{$title}}</title>
+    <style>
+        .container {
+            width: 420px;
+            margin: 100px auto 0px auto;
+            text-align: center;
+            font-size: large;
+        }
+    </style>
 </head>
 <body>
-<h1>{{$title}}</h1>
-{{$slot}}
+<div class="container">
+    <h1>{{$title}}</h1> <BR>
+    {{$slot}}
+</div>
 
 </body>
 </html>

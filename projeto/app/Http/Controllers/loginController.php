@@ -8,7 +8,7 @@ class loginController extends Controller
 {
     public function index(Request $request)
     {
-        return null;
+        return view('login.index');
     }
 
 }

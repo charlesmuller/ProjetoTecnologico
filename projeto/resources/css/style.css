@@ -12,14 +12,11 @@ input{
     font-size: 16pt;
     padding: 10px 0px;
     outline: none; /*para tirar o selecionador da caixa de escrever onde o tab passa*/
-
 }
-
 
 body{
     font-family: sans-serif;
     text-align: center;
-
 }
 
 .formulario {
@@ -30,7 +27,6 @@ body{
 .formulario h1{
     text-align: center;
     padding: 20px;
-
 }
 
 a{
@@ -46,7 +42,7 @@ input[type=submit]{
     cursor: pointer; /*aparece a mãozinha no botão*/
     border: none;
 }
+
 input[type=reset]{
     border: none;
-
 }

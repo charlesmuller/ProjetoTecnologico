@@ -11,7 +11,7 @@ class colecaoController extends Controller
         $quadrinhos = [
             'Homem Aranha',
             'X-Men',
-            'Demolidor'
+            'Demolidor',
         ];
         return view('colecao.index')->with('quadrinhos', $quadrinhos);
     }

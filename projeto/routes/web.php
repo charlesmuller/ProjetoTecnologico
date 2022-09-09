@@ -17,14 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/login', function() {
-    return view('login.index');
-});
-
-Route::get('/cadastro', function() {
-    return view('cadastro.index');
-});
-
-Route::get('/colecao', function() {
-    return view('colecao.index');
-});
+Route::get('/login', [\App\Http\Controllers\loginController::class, 'index']);
+Route::get('/colecao', [\App\Http\Controllers\colecaoController::class, 'index']);
+Route::get('/cadastro', [\App\Http\Controllers\cadastroController::class, 'index']);

@@ -1,9 +1,6 @@
-<?php
-use App\Http\Controllers\cadastroController;
-?>
-<x-layout title="Login">
-<form method="post" style="width: 420px; margin: 150px auto 0px auto">
-        <h1>Faça seu cadastro</h1>
+<x-layout title="Página de Cadastro">
+<form method="post" action="">
+{{--    " --}}
         <div class="form-group">
             <label for="InputNome">Seu nome completo</label>
             <input type="text" class="form-control" id="InputNome" autofocus="" aria-describedby="emailHelp" placeholder="Seu nome" required="">
@@ -21,6 +18,6 @@ use App\Http\Controllers\cadastroController;
             <label for="InputSenha2">Repita a senha</label>
             <input type="password" class="form-control" id="InputSenha2" placeholder="Repita a senha" required="">
         </div>
-        <button type="submit" name="cadastrar" class="btn btn-primary">Cadastrar</button>
+        <button type="submit" name="cadastrar" class="btn btn-primary btn-lg">Cadastrar</button>
 </form>
 </x-layout>
