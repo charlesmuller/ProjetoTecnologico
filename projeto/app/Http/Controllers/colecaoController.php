@@ -15,4 +15,8 @@ class colecaoController extends Controller
         ];
         return view('colecao.index')->with('quadrinhos', $quadrinhos);
     }
+    public function create()
+    {
+        return view('colecao.create');
+    }
 }
