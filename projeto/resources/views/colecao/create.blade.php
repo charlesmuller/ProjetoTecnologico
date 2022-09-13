@@ -6,5 +6,5 @@
             <button type="submit" name="cadastrar" class="btn btn-primary btn-lg">Pesquisar</button>
         </div>
     </form>
-    <a href="/colecao">Voltar</a>
+    <a href="/colecao" class="btn btn-dark">Voltar</a>
 </x-layout>
