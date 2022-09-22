@@ -38,3 +38,6 @@ Ideia
 --- sudo apt install nodejs
 - Instação LaravelMix
 --- npm install laravel-mix --save-dev
+
+charlesmuller02
+135078Mu
