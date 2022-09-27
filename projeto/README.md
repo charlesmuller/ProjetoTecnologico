@@ -1,5 +1,7 @@
 # Projeto Tecnologico
 
+
+# Teste
 ### Para executar o projeto:
     - Vá até o terminal linux e dentro da pasta principal /projeto rodar o comando php artisan serve --host=0.0.0.0 --port=8000
     - Abre o seu navegador em localhost:8000
