@@ -1,8 +1,13 @@
 # Projeto Tecnologico
 
 ### Para executar o projeto:
-    - Vá até o terminal linux e dentro da pasta principal /projeto rodar o comando php artisan serve --host=0.0.0.0 --port=8000
-    - Abre o seu navegador em localhost:8000
+    - git clone no projeto do github
+    - rode no terminal: sudo apt-get install php-dom
+    - Rode no terminal: composer install --ignore-platform-reqs
+    - php artisan key:generate
+    - php artisan config:cache
+    - Vá até a pasta principal do projeto e rode: php artisan serve 
+    - Abra o seu navegador em 127.0.0.1:8000
     
 
 Gerenciador de Coleção de HQ

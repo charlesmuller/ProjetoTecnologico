@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-
-        Schema::table('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name_user');
-            $table->string('email_user')->unique();
-            $table->string('password_user');
-            $table->timestamp('email_verified_at_user')->nullable();
+        Schema::create('data_hqs', function (Blueprint $table) {
+            $table->id('id_hq');
+            $table->string('title_hq')->nullable();
+            $table->string('caracter_hq')->nullable();
+            $table->integer('edition_number_hq')->nullable();
+            $table->date('release_year_hq')->nullable();
+            $table->string('obs_hq')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('data_hqs');
     }
 };

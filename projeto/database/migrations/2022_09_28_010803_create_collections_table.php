@@ -13,14 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-
-        Schema::table('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name_user');
-            $table->string('email_user')->unique();
-            $table->string('password_user');
-            $table->timestamp('email_verified_at_user')->nullable();
-            $table->timestamps();
+        Schema::create('collections', function (Blueprint $table) {
+            $table->id()->autoIncrement();
+            $table->string('name_collection', 128)->nullable();
         });
     }
 
@@ -31,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('collections');
     }
 };
