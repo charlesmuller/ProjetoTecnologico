@@ -1,5 +1,5 @@
 <x-layout title="Login">
-<form method="post" style="width: 420px; margin: 150px auto 0px auto">
+<form method="post" style="width: 420px; margin: 50px auto 0px auto">
         <h1>Área de login</h1>
         <div class="form-group">
             <label for="exampleInputEmail1">Endereço de Email</label>

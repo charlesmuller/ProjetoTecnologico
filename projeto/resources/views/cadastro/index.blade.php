@@ -1,5 +1,5 @@
 <x-layout title="Página de Cadastro">
-<form method="post" action="">
+<form method="post" action="" style="width: 420px; margin: 50px auto 0px auto">
 {{--    " --}}
         <div class="form-group">
             <label for="InputNome">Seu nome completo</label>
