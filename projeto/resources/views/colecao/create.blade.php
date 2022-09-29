@@ -1,9 +1,10 @@
 <x-layout title="Nova Coleção">
-    <form action="" method="post">
+    <form action="/colecao/salvar" method="post">
+        @csrf
         <div class="group-form">
-            <label for="nome">Buscar</label>
-            <input type="text" id="nome" name="nome">
-            <button type="submit" name="cadastrar" class="btn btn-primary btn-lg">Pesquisar</button>
+            <label for="nome">Digite o nome da HQ</label>
+            <input type="text" name="nome">
+            <button type="submit" name="adicionar" class="btn btn-primary btn-lg">Adicionar</button>
         </div>
     </form>
     <a href="/colecao" class="btn btn-dark">Voltar</a>
