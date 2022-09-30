@@ -13,16 +13,18 @@ class cadastroController extends Controller
     }
 
     public function store(Request $request)
-    {   dd($request);
+    {
         $nomeUsuario = $request->input('nomeusuario');
-        $emailUsuario = $teste->input('email');
+        $emailUsuario = $request->input('email');
+        $senha1Usuario = $request->input('senha1');
+        $senha2Usuario = $request->input('senha2');
 
-        $senha2Usuario = $request->input('senha1');
-        $senha1Usuario = $request->input('senha2');
-
-        $senhaUsuario = $senha1Usuario === $senha2Usuario ? $senha1Usuario : redirect('cadastro');
-
-        if (DB::insert('INSERT INTO users (name_user, email_user, password_user) VALUES (?)', [$nomeUsuario, $emailUsuario, $senhaUsuario])) {
+        if ($senha1Usuario == $senha2Usuario){
+            $senhaUsuario = $senha1Usuario;
+        }else{
+            return redirect('/cadastro');
+        }
+        if (DB::insert('INSERT INTO users (name_user, email_user, password_user) VALUES (?,?,?)', [$nomeUsuario, $emailUsuario, $senhaUsuario])) {
             return redirect('/login');
         } else {
             return "Deu ruim";
