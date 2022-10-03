@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -9,7 +10,9 @@ class colecaoController extends Controller
 {
     public function index(Request $request)
     {
-        $quadrinhos = DB::select('SELECT name_collection FROM collections;');
+        //$quadrinhos = Collection::all();
+        $quadrinhos = Collection::query()->orderBy('name_collection')->get();
+
         return view('colecao.index')->with('quadrinhos', $quadrinhos);
     }
 
@@ -20,11 +23,11 @@ class colecaoController extends Controller
 
     public function store(Request $request)
     {
-        $nomeColecao = $request->input('nome');
-        if (DB::insert('INSERT INTO collections (name_collection) VALUES (?)', [$nomeColecao])) {
-            return redirect('/colecao');
-        } else {
-            return "Deu ruim";
-        }
+        $nameCollection = $request->input('nome');
+        $collection = new Collection();
+        $collection->name_collection = $nameCollection;
+        $collection->save();
+
+        return redirect('/colecao');
     }
 }
