@@ -17,10 +17,10 @@ class userController extends Controller
 
     public function store(Request $request)
     {
-        $nomeUsuario = $request->input('nomeusuario');
-        $emailUsuario = $request->input('email');
-        $senha1Usuario = $request->input('senha1');
-        $senha2Usuario = $request->input('senha2');
+        $nomeUsuario = $request->nomeusuario;
+        $emailUsuario = $request->email;
+        $senha1Usuario = $request->senha1;
+        $senha2Usuario = $request->senha2;
 
         if ($senha1Usuario == $senha2Usuario){
             $senhaUsuario = $senha1Usuario;
@@ -36,6 +36,7 @@ class userController extends Controller
         try {
             $cadastro->save();
             return redirect('/login');
+
         }catch(\Exception $e){
             echo $e->getMessage();
         }

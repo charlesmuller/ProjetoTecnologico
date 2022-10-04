@@ -1,6 +1,6 @@
 <x-layout title="Página de Cadastro">
 
-<form method="post" action="/cadastro/salvar" style="width: 420px; margin: 50px auto 0px auto" id="formulariocadastro">
+<form method="post" action="{{ route('cadastro.store') }}" style="width: 420px; margin: 50px auto 0px auto" id="formulariocadastro">
         @csrf
         <div class="form-group">
             <label for="InputNome">Seu nome completo</label>

@@ -23,7 +23,7 @@ class colecaoController extends Controller
 
     public function store(Request $request)
     {
-        $nameCollection = $request->input('nome');
+        $nameCollection = $request->nome;
         $collection = new Collection();
         $collection->name_collection = $nameCollection;
         $collection->save();

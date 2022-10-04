@@ -14,22 +14,26 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/login');
 });
 
-Route::get('/login', [\App\Http\Controllers\loginController::class, 'index']);
-Route::get('/cadastro', [\App\Http\Controllers\userController::class, 'index']);
-Route::post('/cadastro/salvar', [\App\Http\Controllers\userController::class, 'store']);
-Route::get('/colecao', [\App\Http\Controllers\colecaoController::class, 'index']);
-Route::get('/colecao/criar', [\App\Http\Controllers\colecaoController::class, 'create']);
-Route::post('/colecao/salvar', [\App\Http\Controllers\colecaoController::class, 'store']);
 
+Route::controller(\App\Http\Controllers\userController::class)->group(function () {
+    Route::get('/cadastro','index')->name('cadastro.index');
+    Route::post('/cadastro/salvar','store')->name('cadastro.store');
+});
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
+Route::controller(\App\Http\Controllers\colecaoController::class)->group(function () {
+    Route::get('/colecao', 'index')->name('collection.index');
+    Route::get('/colecao/criar','create')->name('collection.create');
+    Route::post('/colecao/salvar','store')->name('collection.store');
+});
+
+Route::controller(\App\Http\Controllers\loginController::class)->group(function () {
+    Route::get('/login','index') ->name('login.index');
+});
+
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
