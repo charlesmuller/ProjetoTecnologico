@@ -28,6 +28,12 @@ class colecaoController extends Controller
         $collection->name_collection = $nameCollection;
         $collection->save();
 
-        return redirect('/colecao');
+        return to_route('colecao.index');
+    }
+
+    public function destroy(Request $request)
+    {
+        Collection::destroy($request->colecao);
+        return to_route('colecao.index');
     }
 }

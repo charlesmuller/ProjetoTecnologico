@@ -17,17 +17,18 @@ Route::get('/', function () {
     return redirect('/login');
 });
 
-
 Route::controller(\App\Http\Controllers\userController::class)->group(function () {
     Route::get('/cadastro','index')->name('cadastro.index');
     Route::post('/cadastro/salvar','store')->name('cadastro.store');
 });
 
 Route::controller(\App\Http\Controllers\colecaoController::class)->group(function () {
-    Route::get('/colecao', 'index')->name('collection.index');
-    Route::get('/colecao/criar','create')->name('collection.create');
-    Route::post('/colecao/salvar','store')->name('collection.store');
+    Route::get('/colecao', 'index')->name('colecao.index');
+    Route::get('/colecao/criar','create')->name('colecao.create');
+    Route::post('/colecao/salvar','store')->name('colecao.store');
+    Route::delete('/colecao/destroy/{colecao}', 'destroy')->name('colecao.destroy');
 });
+
 
 Route::controller(\App\Http\Controllers\loginController::class)->group(function () {
     Route::get('/login','index') ->name('login.index');

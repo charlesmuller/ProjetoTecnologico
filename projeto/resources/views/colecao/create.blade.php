@@ -1,5 +1,5 @@
 <x-layout title="Nova Coleção">
-    <form action="/colecao/salvar" method="post">
+    <form action="{{ route('colecao.store') }}" method="post">
         @csrf
         <div class="group-form">
             <label for="nome">Digite o nome da HQ</label>
