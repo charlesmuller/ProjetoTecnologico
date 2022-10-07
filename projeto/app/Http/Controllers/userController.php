@@ -10,9 +10,10 @@ use mysql_xdevapi\Exception;
 
 class userController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return view('cadastro.index');
+        $cadastroSucesso = session('cadastro.sucesso');
+        return view('cadastro.index')->with('cadastroSucesso', $cadastroSucesso);
     }
 
     public function store(Request $request)
@@ -25,7 +26,7 @@ class userController extends Controller
         if ($senha1Usuario == $senha2Usuario){
             $senhaUsuario = $senha1Usuario;
         }else{
-            return redirect('/cadastro');
+            return to_route('cadastro.index');
         }
 
         $cadastro = new User();
@@ -35,7 +36,8 @@ class userController extends Controller
 
         try {
             $cadastro->save();
-            return redirect('/login');
+            $request->session()->flash('cadastro.sucesso', 'Cadastro adicionado com sucesso!');
+            return to_route('cadastro.index');
 
         }catch(\Exception $e){
             echo $e->getMessage();

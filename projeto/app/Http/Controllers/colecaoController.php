@@ -12,8 +12,9 @@ class colecaoController extends Controller
     {
         //$quadrinhos = Collection::all();
         $quadrinhos = Collection::query()->orderBy('name_collection')->get();
+        $mensagemSucesso = session('mensagem.sucesso');
 
-        return view('colecao.index')->with('quadrinhos', $quadrinhos);
+        return view('colecao.index')->with('quadrinhos', $quadrinhos)->with('mensagemSucesso', $mensagemSucesso);
     }
 
     public function create()
@@ -28,12 +29,15 @@ class colecaoController extends Controller
         $collection->name_collection = $nameCollection;
         $collection->save();
 
+        $request->session()->flash('mensagem.sucesso', 'Título adicionado com sucesso!');
+
         return to_route('colecao.index');
     }
 
     public function destroy(Request $request)
     {
         Collection::destroy($request->colecao);
+        $request->session()->flash('mensagem.sucesso', 'Título adicionado com sucesso!');
         return to_route('colecao.index');
     }
 }

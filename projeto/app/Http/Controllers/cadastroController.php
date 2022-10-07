@@ -9,11 +9,5 @@ use mysql_xdevapi\Exception;
 
 class cadastroController extends Controller
 {
-    public function index()
-    {
-        return view('cadastro.index');
-    }
-
-
 
 }
