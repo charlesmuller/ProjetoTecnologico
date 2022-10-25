@@ -46,3 +46,5 @@ Ideia
 
 charlesmuller02
 135078Mu
+
+refresh route -- php artisan route:clear

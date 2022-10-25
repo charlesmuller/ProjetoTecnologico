@@ -40,4 +40,9 @@ class colecaoController extends Controller
         $request->session()->flash('mensagem.sucesso', 'Título adicionado com sucesso!');
         return to_route('colecao.index');
     }
+
+    public function add(Request $request)
+    {
+        return view('colecao.add');
+    }
 }
