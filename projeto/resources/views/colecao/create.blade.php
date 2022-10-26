@@ -3,7 +3,7 @@
         @csrf
         <div class="group-form">
             <label for="nome">Digite o nome da HQ</label>
-            <input type="text" name="nome">
+            <input type="text" name="nome" required>
             <button type="submit" name="adicionar" class="btn btn-primary btn-lg">Adicionar</button>
         </div>
     </form>

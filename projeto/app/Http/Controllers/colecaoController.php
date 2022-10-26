@@ -10,11 +10,17 @@ class colecaoController extends Controller
 {
     public function index(Request $request)
     {
-        //$quadrinhos = Collection::all();
         $quadrinhos = Collection::query()->orderBy('name_collection')->get();
         $mensagemSucesso = session('mensagem.sucesso');
 
+
+        if(isset($quadrinhos)){
         return view('colecao.index')->with('quadrinhos', $quadrinhos)->with('mensagemSucesso', $mensagemSucesso);
+        }else { //ver porque não funciona
+            $mensagemSemColecao = session('mensagem.colecao');
+            $request->session()->flash('mensagem.colecao', "Coleção adicionada com sucesso!");
+            return view('colecao.index')->with('quadrinhos', $quadrinhos)->with('mensagemSemColecao', $mensagemSemColecao);
+        }
     }
 
     public function create()
@@ -29,15 +35,16 @@ class colecaoController extends Controller
         $collection->name_collection = $nameCollection;
         $collection->save();
 
-        $request->session()->flash('mensagem.sucesso', 'Título adicionado com sucesso!');
+        $request->session()->flash('mensagem.sucesso', "Coleção {$collection->name_collection} adicionada com sucesso!");
 
         return to_route('colecao.index');
     }
 
-    public function destroy(Request $request)
+    public function destroy(Collection $colecao, Request $request)
     {
-        Collection::destroy($request->colecao);
-        $request->session()->flash('mensagem.sucesso', 'Título adicionado com sucesso!');
+        $colecao->delete();
+        $request->session()->flash('mensagem.sucesso', "Coleção {$colecao->name_collection} removida com sucesso!");
+
         return to_route('colecao.index');
     }
 
