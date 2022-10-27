@@ -3,7 +3,7 @@
     <a href="/colecao" class="btn btn-dark" style="aling 13px;">Voltar</a>
 </div>
 
-    <form action="{{ route('colecao.store') }}" method="post">
+    <form action="{{ route('api.store') }}" method="post">
         @csrf
         <div class="group-form">
             <input type="text" name="nome">

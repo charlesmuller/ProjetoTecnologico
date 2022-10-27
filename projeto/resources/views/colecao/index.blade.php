@@ -1,4 +1,4 @@
-<x-layout title="Sua coleção">
+<x-layout title="Suas coleções">
 
     <a href="{{ route('colecao.create') }}" class="btn btn-info mb-3">Criar Coleção</a>
 
@@ -22,7 +22,7 @@
 
                                 @method('DELETE')
                                 <button class="btn btn-danger btn-md" style="margin-top: 13px;"> REMOVER </button>
-                                <a href="{{ route('colecao.add') }}" class="btn btn-info btn-md" style="margin-top: 13px;">ADICIONAR HQ</a>
+                                <a href="{{ route('api.add') }}" class="btn btn-info btn-md" style="margin-top: 13px;">ADICIONAR HQ</a>
 
                             </form>
                         </li>
@@ -31,11 +31,11 @@
             </ul>
         </div>
     @endisset
-{{--    @isset($mensagemSemColecao)--}} não está funcionando
-{{--        <li class="list-group-item d-flex justify-content-between align-items-center">--}}
-{{--            <div class="alert alert-success">--}}
-{{--                {{$mensagemSemColecao}}--}}
-{{--            </div>--}}
-{{--        </li>--}}
-{{--    @endisset--}}
+   @isset($mensagemSemColecao)
+       <li class="list-group-item d-flex justify-content-between align-items-center">
+           <div class="alert alert-success">
+               {{$mensagemSemColecao}}
+           </div>
+       </li>
+    @endisset
 </x-layout>

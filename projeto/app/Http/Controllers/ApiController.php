@@ -6,14 +6,12 @@ use Illuminate\Http\Request;
 
 class ApiController extends Controller
 {
-//    public function index(Request $request)
-//    {
-//        return view('exemplo-api.index');
-//    }
-
     public function __invoke()
     {
-       return Http::get('https://jsonplaceholder.typicode.com/posts')->json();
+    //    return Http::get('https://gateway.marvel.com:443/v1/public/characters?',[
+    //         'public_key'    => '8587449d89851b3a3d1392c699255da3',
+    //         'private_key'   => '925acf924ea4582935c159e6195ecc13b9e349d5',
+    //    ])->json();
 
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
@@ -44,5 +42,9 @@ class ApiController extends Controller
 
         return json_encode($result);
 
+    }
+    public function add(Request $request)
+    {
+        return view('colecao.add');
     }
 }
