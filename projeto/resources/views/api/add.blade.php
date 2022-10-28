@@ -12,5 +12,5 @@
         <button type="submit" name="adicionar" class="btn btn-primary btn-lg">Buscar</button>
         </div>
     </form>
-    
+
 </x-layout>

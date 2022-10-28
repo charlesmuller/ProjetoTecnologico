@@ -22,15 +22,12 @@ Route::controller(\App\Http\Controllers\userController::class)->group(function (
     Route::post('/cadastro/salvar','store')->name('cadastro.store');
 });
 
-Route::controller(\App\Http\Controllers\colecaoController::class)->group(function () {
-    Route::get('/colecao', 'index')->name('colecao.index');
-    Route::get('/colecao/criar','create')->name('colecao.create');
-    
-    Route::post('/colecao/salvar','store')->name('colecao.store');
-    Route::delete('/colecao/destroy/{colecao}', 'destroy')->name('colecao.destroy');
-});
-Route::controller(\App\Http\Controllers\colecaoController::class)->group(function () {
-Route::get('/api/adicionarhq','add')->name('api.add');
+Route::resource('/colecao', \App\Http\Controllers\colecaoController::class)
+    ->only(['index', 'create', 'store', 'destroy', 'edit', 'update']);
+
+Route::controller(\App\Http\Controllers\apiController::class)->group(function () {
+    Route::get('/api/adicionarhq','add')->name('api.add');
+    Route::post('/api/salvar','store')->name('api.store');
 });
 
 Route::controller(\App\Http\Controllers\loginController::class)->group(function () {

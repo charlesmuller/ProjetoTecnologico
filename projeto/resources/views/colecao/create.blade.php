@@ -1,11 +1,5 @@
 <x-layout title="Nova Coleção">
-    <form action="{{ route('colecao.store') }}" method="post">
-        @csrf
-        <div class="group-form">
-            <label for="nome">Digite o nome da HQ</label>
-            <input type="text" name="nome" required>
-            <button type="submit" name="adicionar" class="btn btn-primary btn-lg">Adicionar</button>
-        </div>
-    </form>
+    <x-colecao.form :action="route('colecao.store')"/>
+    
     <a href="/colecao" class="btn btn-dark">Voltar</a>
 </x-layout>

@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ApiController extends Controller
+class apiController extends Controller
 {
-    public function __invoke()
+    public function call()
     {
     //    return Http::get('https://gateway.marvel.com:443/v1/public/characters?',[
     //         'public_key'    => '8587449d89851b3a3d1392c699255da3',
@@ -45,6 +45,11 @@ class ApiController extends Controller
     }
     public function add(Request $request)
     {
-        return view('colecao.add');
+        return view('api.add');
+    }
+
+    public function store(Request $request)
+    {
+        return view('api.store');
     }
 }
