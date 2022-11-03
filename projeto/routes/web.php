@@ -25,9 +25,13 @@ Route::controller(\App\Http\Controllers\userController::class)->group(function (
 Route::resource('/colecao', \App\Http\Controllers\colecaoController::class)
     ->only(['index', 'create', 'store', 'destroy', 'edit', 'update']);
 
+//Route::resource('/api', \App\Http\Controllers\apiController::class)
+//    ->only(['index', 'create', 'store', 'destroy', 'edit', 'update']);
+
 Route::controller(\App\Http\Controllers\apiController::class)->group(function () {
     Route::get('/api/adicionarhq','add')->name('api.add');
     Route::post('/api/salvar','store')->name('api.store');
+    Route::post('/api/busca','chamada')->name('api.chamada');
 });
 
 Route::controller(\App\Http\Controllers\loginController::class)->group(function () {
