@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ColecaoFormRequest;
 use App\Models\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class colecaoController extends Controller
+class collectionController extends Controller
 {
     public function index(Request $request)
     {
-        $colecoes = Collection::query()->orderBy('name_collection')->get();
+        $colecoes = Collection::query()->get();
         $mensagemSucesso = session('mensagem.sucesso');
 
         return view('colecao.index')->with('colecoes', $colecoes)->with('mensagemSucesso', $mensagemSucesso);
@@ -21,7 +22,8 @@ class colecaoController extends Controller
         return view('colecao.create');
     }
 
-    public function store(Request $request)
+    //ColecaoFormRequest do método store faz a validação dos campos enviados pelo formulário
+    public function store(ColecaoFormRequest $request)
     {
         $nameCollection = $request->nome;
         $collection = new Collection();
@@ -50,7 +52,7 @@ class colecaoController extends Controller
         return view('colecao.edit')->with('colecao', $colecao);
     }
 
-    public function update(Collection $colecao, Request $request)
+    public function update(Collection $colecao, ColecaoFormRequest $request)
     {
         $colecao->name_collection = $request->nome;
         $colecao->save();

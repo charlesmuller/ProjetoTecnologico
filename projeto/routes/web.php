@@ -22,7 +22,7 @@ Route::controller(\App\Http\Controllers\userController::class)->group(function (
     Route::post('/cadastro/salvar','store')->name('cadastro.store');
 });
 
-Route::resource('/colecao', \App\Http\Controllers\colecaoController::class)
+Route::resource('/colecao', \App\Http\Controllers\collectionController::class)
     ->only(['index', 'create', 'store', 'destroy', 'edit', 'update']);
 
 //Route::resource('/api', \App\Http\Controllers\apiController::class)

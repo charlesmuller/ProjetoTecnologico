@@ -13,7 +13,7 @@
                             {{$colecao->name_collection}}
 
                             <span class="d-flex">
-                                <a href="{{ route('colecao.edit', $colecao->id) }}" class="btn btn-primary btn-sm">Ed</a>
+                                <a href="{{ route('colecao.edit', $colecao->id) }} " class="btn btn-primary btn-sm" style="margin-top: 13px; margin-bottom: 16px">Ed</a>
 
                                 <form action="{{ route('colecao.destroy', $colecao->id) }}" method="post">
                                     @csrf

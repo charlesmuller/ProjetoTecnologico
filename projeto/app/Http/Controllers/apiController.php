@@ -34,7 +34,7 @@ class apiController extends Controller
         $retorno = json_decode(curl_exec($curl), true);
         curl_close($curl);
 
-        return($retorno);
+        return view('api.add')->with($retorno);
     }
 
     public function getMock(){
