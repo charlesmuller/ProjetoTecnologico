@@ -9,6 +9,7 @@
                id="nome"
                name="nome"
                class="form-control"
+               autofocus
                @isset($nome)value="{{$nome}}" @endisset
         >
         <button type="submit" name="adicionar" class="btn btn-primary btn-lg">Adicionar</button>

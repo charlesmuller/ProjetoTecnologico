@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('edition_number_comic')->nullable();
             $table->date('release_year_comic')->nullable();
             $table->string('obs_comic')->nullable();
-            $table->foreignId('collections_id')->constrained();
+            $table->foreignId('collections_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

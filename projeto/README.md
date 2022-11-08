@@ -28,6 +28,7 @@ API Guia dos Quadrinhos (ver se é possível fazer)
 --- http://www.guiadosquadrinhos.com/
 
 Ideia
+--- https://www.youtube.com/watch?v=6PZg6ht8yyc
 --- https://www.youtube.com/watch?v=_OYW_rQzi3E
 --- https://greensock.com/gsap/
 --- https://datatables.net/extensions/responsive/examples/child-rows/custom-renderer.html
