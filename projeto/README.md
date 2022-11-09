@@ -44,8 +44,12 @@ Ideia
 --- sudo apt install nodejs
 - Instação LaravelMix
 --- npm install laravel-mix --save-dev
+- Instalação jetstream
+--- php artisan jetstream:install livewire
+- Após o jetstream rodar
+--- npm install 
+--- npm run dev
 
 charlesmuller02
 135078Mu
 
-refresh route -- php artisan route:clear
