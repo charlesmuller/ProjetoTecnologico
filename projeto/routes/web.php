@@ -17,10 +17,10 @@ Route::get('/', function () {
     return redirect('/login');
 });
 
-Route::controller(\App\Http\Controllers\userController::class)->group(function () {
-    Route::get('/cadastro','index')->name('cadastro.index');
-    Route::post('/cadastro/salvar','store')->name('cadastro.store');
-});
+//Route::controller(\App\Http\Controllers\userController::class)->group(function () {
+//    Route::get('/cadastro','index')->name('cadastro.index');
+//    Route::post('/cadastro/salvar','store')->name('cadastro.store');
+//});
 
 Route::resource('/colecao', \App\Http\Controllers\collectionController::class)
     ->only(['index', 'create', 'store', 'destroy', 'edit', 'update']);
@@ -34,12 +34,15 @@ Route::controller(\App\Http\Controllers\apiController::class)->group(function ()
     Route::post('/api/busca','chamada')->name('api.chamada');
 });
 
-Route::controller(\App\Http\Controllers\loginController::class)->group(function () {
-    Route::get('/login','index') ->name('login.index');
-});
+//Route::controller(\App\Http\Controllers\loginController::class)->group(function () {
+//    Route::get('/login','index') ->name('login.index');
+//});
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/colecao', function () {
+        return view('colecao');
+    })->name('colecao');
 });
+
+require_once __DIR__ . '/jetstream.php';
+require_once __DIR__ . '/fortify.php';

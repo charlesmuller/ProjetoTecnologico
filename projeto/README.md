@@ -44,6 +44,8 @@ Ideia
 --- sudo apt install nodejs
 - Instação LaravelMix
 --- npm install laravel-mix --save-dev
+- Composer
+--- composer require laravel/jetstream 
 - Instalação jetstream
 --- php artisan jetstream:install livewire
 - Após o jetstream rodar
