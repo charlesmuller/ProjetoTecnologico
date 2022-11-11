@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('collections', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->string('name_collection', 128)->nullable();
+            $table->foreignId('comics_id')->constrained()->onDelete('cascade');
         });
     }
 

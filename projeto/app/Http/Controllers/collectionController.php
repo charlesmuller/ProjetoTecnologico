@@ -30,8 +30,6 @@ class collectionController extends Controller
         $collection->name_collection = $nameCollection;
         $collection->save();
 
-        //$request->session()->flash('mensagem.sucesso', "Coleção {$collection->name_collection} adicionada com sucesso!"); exemplo de outra flash message
-
         return to_route('colecao.index')->with('mensagem.sucesso', "Coleção {$collection->name_collection} adicionada com sucesso!");
     }
 

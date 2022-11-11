@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\apiController;
+use App\Http\Controllers\collectionController;
+use App\Http\Controllers\comicsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,29 +20,19 @@ Route::get('/', function () {
     return redirect('/login');
 });
 
-//Route::controller(\App\Http\Controllers\userController::class)->group(function () {
-//    Route::get('/cadastro','index')->name('cadastro.index');
-//    Route::post('/cadastro/salvar','store')->name('cadastro.store');
-//});
-
-Route::resource('/colecao', \App\Http\Controllers\collectionController::class)
+Route::resource('colecao', collectionController::class)
     ->only(['index', 'create', 'store', 'destroy', 'edit', 'update']);
 
-//Route::resource('/api', \App\Http\Controllers\apiController::class)
-//    ->only(['index', 'create', 'store', 'destroy', 'edit', 'update']);
-
-Route::controller(\App\Http\Controllers\apiController::class)->group(function () {
+Route::controller(apiController::class)->group(function () {
     Route::get('/api/adicionarhq','add')->name('api.add');
     Route::post('/api/salvar','store')->name('api.store');
     Route::post('/api/busca','chamada')->name('api.chamada');
 });
 
-//Route::controller(\App\Http\Controllers\loginController::class)->group(function () {
-//    Route::get('/login','index') ->name('login.index');
-//});
+Route::get('/colecao/{colecao}/comics', [comicsController::class, 'index'])->name('comics.index');
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])->group(function () {
-    Route::get('/colecao', function () {
+    Route::get('/colecao/colecao', function () {
         return view('colecao');
     })->name('colecao');
 });
