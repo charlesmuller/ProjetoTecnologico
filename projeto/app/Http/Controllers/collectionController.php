@@ -4,49 +4,48 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ColecaoFormRequest;
 use App\Models\Collection;
+use App\Repositories\CollectionRepository;
+use App\Repositories\EloquentCollectionRepository;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class collectionController extends Controller
 {
-    public function index(Request $request)
-    {
+    //Recebe um repositorio por parametro e salva ele como uma propriedade dessa classe no método store linha 30
+    public function __construct(private CollectionRepository $repository){
+
+    }
+    public function index(Request $request){
+
         $colecoes = Collection::query()->get();
         $mensagemSucesso = session('mensagem.sucesso');
-
         return view('colecao.index')->with('colecoes', $colecoes)->with('mensagemSucesso', $mensagemSucesso);
     }
 
-    public function create()
-    {
+    public function create(){
+
         return view('colecao.create');
     }
 
     //ColecaoFormRequest do método store faz a validação dos campos enviados pelo formulário
-    public function store(ColecaoFormRequest $request)
-    {
-        $nameCollection = $request->nome;
-        $collection = new Collection();
-        $collection->name_collection = $nameCollection;
-        $collection->save();
+    public function store(ColecaoFormRequest $request){
 
+        $collection = $this->repository->add($request);
         return to_route('colecao.index')->with('mensagem.sucesso', "Coleção {$collection->name_collection} adicionada com sucesso!");
     }
 
-    public function destroy(Collection $colecao, Request $request)
-    {
-        $colecao->delete();
+    public function destroy(Collection $colecao, Request $request){
 
+        $colecao->delete();
         return to_route('colecao.index')->with('mensagem.sucesso', "Coleção {$colecao->name_collection} removida com sucesso!");
     }
 
-    public function add(Request $request)
-    {
+    public function add(Request $request){
+
         return view('api.add');
     }
 
-    public function edit(Collection $colecao)
-    {
+    public function edit(Collection $colecao){
+
         return view('colecao.edit')->with('colecao', $colecao);
     }
 

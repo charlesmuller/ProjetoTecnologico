@@ -1,6 +1,7 @@
 <x-layout title="Adicionar HQ">
-<div class="col-lg-12" style="text-align: left;">
-    <a href="/colecao" class="btn btn-dark" style="aling 13px;">Voltar</a>
+    <link rel="stylesheet" href="{{asset('css/app.css')}}">
+<div class="col-lg-12">
+    <a href="/colecao" class="btn btn-dark" style="position: relative; right: 540px">Voltar</a>
 </div>
 
         <form action="{{ route('api.chamada') }}" method="post" id="connectionForm">

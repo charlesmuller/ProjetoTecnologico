@@ -1,4 +1,5 @@
 <form action="{{ $action }}" method="post">
+    <link rel="stylesheet" href="{{asset('css/app.css')}}">
     @csrf
     @if($update)
         @method('PUT')
