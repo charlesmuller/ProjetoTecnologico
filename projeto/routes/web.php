@@ -27,6 +27,7 @@ Route::controller(apiController::class)->group(function () {
     Route::get('/api/adicionarhq','add')->name('api.add');
     Route::post('/api/salvar','store')->name('api.store');
     Route::post('/api/busca','chamada')->name('api.chamada');
+    Route::post('/api/retorno','retorno')->name('api.retorno');
 });
 
 Route::get('/colecao/{colecao}/comics', [comicsController::class, 'index'])->name('comics.index');

@@ -39,11 +39,6 @@ class collectionController extends Controller
         return to_route('colecao.index')->with('mensagem.sucesso', "Coleção {$colecao->name_collection} removida com sucesso!");
     }
 
-    public function add(Request $request){
-
-        return view('api.add');
-    }
-
     public function edit(Collection $colecao){
 
         return view('colecao.edit')->with('colecao', $colecao);
