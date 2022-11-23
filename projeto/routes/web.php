@@ -31,6 +31,7 @@ Route::controller(apiController::class)->group(function () {
 });
 
 Route::get('/colecao/{colecao}/comics', [comicsController::class, 'index'])->name('comics.index');
+Route::post('/colecao/{colecao}/comics', [comicsController::class, 'readed'])->name('comics.readed');
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])->group(function () {
     Route::get('/colecao/colecao', function () {

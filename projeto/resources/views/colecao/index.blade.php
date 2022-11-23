@@ -1,10 +1,6 @@
-<x-layout title="Suas coleções">
+<x-layout title="Suas coleções" :mensagem-sucesso="$mensagemSucesso">
     <a href="{{ route('colecao.create') }}" class="btn btn-info mb-3">Criar Coleção</a>
-    @isset($mensagemSucesso)
-    <div class="alert alert-success">
-        {{$mensagemSucesso}}
-    </div>
-    @endisset
+
            <ul class="list-group" style="margin-top: 20px;">
                     @foreach($colecoes as $colecao)
                         <li class="list-group-item d-flex justify-content-between align-items-center">
