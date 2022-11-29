@@ -8,7 +8,7 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link >
+                    <x-jet-nav-link href="{{ route('colecao.index') }}">
                         {{ __('Comics')}} <br> {{ __('Collection') }}
                     </x-jet-nav-link>
                 </div>
@@ -93,7 +93,7 @@
                             </div>
 
                             <x-jet-dropdown-link href="{{ route('profile.show') }}">
-                                {{ __('Profile') }}
+                                {{ __('Perfil') }}
                             </x-jet-dropdown-link>
 
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
@@ -110,7 +110,7 @@
 
                                 <x-jet-dropdown-link href="{{ route('logout') }}"
                                          @click.prevent="$root.submit();">
-                                    {{ __('Log Out') }}
+                                    {{ __('sair') }}
                                 </x-jet-dropdown-link>
                             </form>
                         </x-slot>
