@@ -13,6 +13,14 @@
             <button type="submit" class="btn btn-primary btn-lg" >Buscar</button>
             </div>
         </form>
-        </div>
+    <div>
+        @foreach($result->data->results as $dado)
+            @dd($dado)
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span class="badge bg-secondary">
+
+                </span>
+
+    </div>
     </body>
 </x-layout>

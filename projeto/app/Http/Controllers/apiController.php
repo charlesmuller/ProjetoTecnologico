@@ -23,7 +23,7 @@ class apiController extends Controller
         $query = array(
             "name" => $namesearch,
             "orderBy" => "name",
-            "limit" => "1",
+            "limit" => "10",
             'apikey' => $public_key,
             'ts' => $ts,
             'hash' => $hash,
@@ -33,7 +33,7 @@ class apiController extends Controller
 
         curl_setopt($curl, CURLOPT_URL, $marvel_url);
 
-        $result = json_decode(curl_exec($curl), true);
+        $result = json_decode(curl_exec($curl));
 
         curl_close($curl);
 
@@ -55,3 +55,12 @@ class apiController extends Controller
         return view('api.store');
     }
 }
+//        $query_personagem = array(
+//            "format" => "comic",
+//            "formatType" => "comic",
+//            'apikey' => $public_key,
+//            'ts' => $ts,
+//            'hash' => $hash,
+//        );
+
+//        $url_personagem = 'https://gateway.marvel.com:443/v1/public/characters/'.  .'/comics?' . http_build_query($query_personagem);
