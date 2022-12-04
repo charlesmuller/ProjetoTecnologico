@@ -101,9 +101,22 @@ body {
 
 .botao-registro{
     position: fixed;
-    width: 200px;
-    left: 910px;
-    top: 750px;
+    width: 225px;
+    Height: 44px;
+    Top: 850px;
+    Left: 900px;
+}
+
+.logo-ajuste-nav{
+    position: fixed;
+    top: 0;
+    left: 280px;
+    width: 130px;
+    height: 80px;
+}
+
+.barra-superior{
+    background-color: #D9D9D9;
 }
 
 hr {

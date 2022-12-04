@@ -25,6 +25,6 @@
                 </li>
             @endforeach
         </ul>
-        <button class="btn btn-primary mt-2 mb-2">Salvar</button>
+        <button class="btn btn-primary mt-2 mb-2" style="position: relative; top: 50px;">Salvar</button>
     </form>
 </x-layout>

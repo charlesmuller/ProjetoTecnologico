@@ -10,17 +10,17 @@
                 <input required type="text" name="name" id="name"  placeholder="(Ex. Hulk, Iron Man, Spider-Man, etc...)">
             </div>
             <div>
-            <button type="submit" class="btn btn-primary btn-lg" >Buscar</button>
+            <button type="submit" class="btn btn-primary btn-lg" style="position: relative; top: 50px;">Buscar</button>
             </div>
         </form>
     <div>
-        @foreach($result->data->results as $dado)
-            @dd($dado)
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                <span class="badge bg-secondary">
+{{--        @foreach($result->data->results as $dado)--}}
+{{--            @dd($dado)--}}
+{{--            <li class="list-group-item d-flex justify-content-between align-items-center">--}}
+{{--                <span class="badge bg-secondary">--}}
 
-                </span>
-
+{{--                </span>--}}
+{{--        @endforeach--}}
     </div>
     </body>
 </x-layout>

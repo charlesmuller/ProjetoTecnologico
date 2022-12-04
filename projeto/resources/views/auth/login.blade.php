@@ -28,27 +28,23 @@
             <div class="block mt-4">
                 <label for="remember_me" class="flex items-center">
                     <x-jet-checkbox id="remember_me" name="remember" />
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                    <span class="ml-2 text-sm text-gray-600">{{ __('Lembre-me') }}</span>
                 </label>
             </div>
-
             <div class="flex items-center justify-end mt-4">
-
                 @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" style="margin-right: 50px" href="{{ route('password.request') }}">
+                    <a class="underline text-sm text-gray-600 hover:text-gray-900" style="margin-right: 180px" href="{{ route('password.request') }}">
                         {{ __('Esqueceu a senha?') }}
                     </a>
                 @endif
-
                 <x-jet-button class="ml-4">
                     {{ __('Login') }}
                 </x-jet-button>
             </div>
 
         </form>
-
     </x-jet-authentication-card>
     <div class="botao-registro">
-        <a href="{{ route('register') }}" class="btn btn-secondary mt-1" >Registrar</a>
+        <a href="{{ route('register') }}" class="btn btn-success mt-1" >Cadastrar-se</a>
     </div>
 </x-guest-layout>
