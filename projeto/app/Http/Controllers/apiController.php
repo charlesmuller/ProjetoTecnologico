@@ -35,13 +35,13 @@ class apiController extends Controller
 
         $result = json_decode(curl_exec($curl));
 
+
         curl_close($curl);
 
 
 //        dd($result);
-        return view('api.retorno')->with($result);
+        return view('api.retorno', ['result' => $result]);
     }
-
 
     public function retorno(Request $request){
         return view('api.retorno');
