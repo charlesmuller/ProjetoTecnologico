@@ -4,15 +4,16 @@
     <a href="/api/adicionarhq" class="btn btn-dark" style="position: relative; right: 540px">Voltar</a>
 </div>
     <body>
-        @foreach($result->data->results as $dado)
+    {{ $title }}
+{{--        @foreach($result->data->results as $dado)--}}
 {{--            @dd($dado)--}}
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <span class="">
-                    {{ $dado['name'] }}
-                        {{ $dado['comics'] }}
+{{--            <li class="list-group-item d-flex justify-content-between align-items-center">--}}
+{{--                    <span class="">--}}
+{{--                    {{ $dado['name'] }}--}}
+{{--                        {{ $dado['comics'] }}--}}
 
-                    </span>
-        @endforeach
+{{--                    </span>--}}
+{{--        @endforeach--}}
 {{--        @foreach($result['items'] as $dado)--}}
 {{--            @dd($dado)--}}
 {{--            <li class="list-group-item d-flex justify-content-between align-items-center">--}}
