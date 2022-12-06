@@ -36,16 +36,26 @@ class apiController extends Controller
         $result = json_decode(curl_exec($curl), true);
         curl_close($curl);
         $personagem = $result['data']['results'][0]['id'];
+//        dd($personagem);
 
         $url_quadrinho = 'https://gateway.marvel.com:443/v1/public/characters/' . $personagem . '/comics?' . http_build_query($hq);
 
         curl_setopt($curl, CURLOPT_URL, $url_quadrinho);
         $resultQuadrinho = json_decode(curl_exec($curl), true);
         curl_close($curl);
-        $hqPersonagem = $resultQuadrinho['data']['results'][0];
+
+        for($y = 0; $y <= 2; $y++){
+            $hqPersonagem = $resultQuadrinho['data']['results'][$y];
+            $y = $y++;
+        }
+
+//        $hqPersonagem = $resultQuadrinho['data']['results'][1];
+//        dd($hqPersonagem);
+//        foreach($hqPersonagem as $title){
+//                 dd($title);
+//        }
 
 //        dd($hqPersonagem);
-
 
         return view('api.retorno', $hqPersonagem);
     }
@@ -58,7 +68,8 @@ class apiController extends Controller
         $hash = md5($ts . $private_key . $public_key);
 
         $queryQuadrinho = array(
-            "limit" => "10",
+            'orderBy' => 'focDate',
+            'limit' => '10',
             'apikey' => $public_key,
             'ts' => $ts,
             'hash' => $hash,
@@ -81,11 +92,5 @@ class apiController extends Controller
     public function store(Request $request){
         return view('api.store');
     }
-
-
-
-    public function dadosApi()
-    {
-
-    }
+    
 }

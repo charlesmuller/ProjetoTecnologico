@@ -5,24 +5,10 @@
 </div>
     <body>
     {{ $title }}
-{{--        @foreach($result->data->results as $dado)--}}
-{{--            @dd($dado)--}}
-{{--            <li class="list-group-item d-flex justify-content-between align-items-center">--}}
-{{--                    <span class="">--}}
-{{--                    {{ $dado['name'] }}--}}
-{{--                        {{ $dado['comics'] }}--}}
+    <figure>
+    <img src="{{$images[0]['path']}}.jpg">
+    </figure>
 
-{{--                    </span>--}}
-{{--        @endforeach--}}
-{{--        @foreach($result['items'] as $dado)--}}
-{{--            @dd($dado)--}}
-{{--            <li class="list-group-item d-flex justify-content-between align-items-center">--}}
-{{--                    <span class="">--}}
-{{--                    {{ $dado->name }}--}}
-{{--                        {{ $dado }}--}}
-
-{{--                    </span>--}}
-{{--        @endforeach--}}
     </body>
 
 </x-layout>
