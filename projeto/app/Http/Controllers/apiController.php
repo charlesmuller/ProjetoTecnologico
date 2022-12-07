@@ -92,8 +92,16 @@ class apiController extends Controller
         return view('api.add');
     }
 
-    public function store(Request $request){
-        return view('api.store');
+    public function store(comicsControlleromics $imagem, Request $request){
+        $input = $request->get('title');
+//        $title = $input['title'];
+//        $imagem = $input['images'].".jpg";
+//        $imagem->save();
+//        $title->title_comic = session()->get('title');
+        $input = json_encode($input);
+        $input->save();
+
+        return view('api.retorno');
     }
 
 }
