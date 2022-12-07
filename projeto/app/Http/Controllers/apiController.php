@@ -16,15 +16,16 @@ class apiController extends Controller
         $nameSearch = htmlentities(strtolower($request->name));  // HuLk == hulk
         $hq = $this->queryParaRetorno($nameSearch);
 
+//        dd($nameSearch);
         $ts = time();
         $public_key = '8587449d89851b3a3d1392c699255da3';
         $private_key = '925acf924ea4582935c159e6195ecc13b9e349d5';
         $hash = md5($ts . $private_key . $public_key);
 
         $queryPersonagem = array(
-            "name" => $nameSearch,
-            "orderBy" => "name",
-            "limit" => "10",
+            'nameStartsWith' => $nameSearch,
+            'orderBy' => "name",
+            'limit' => "10",
             'apikey' => $public_key,
             'ts' => $ts,
             'hash' => $hash,
@@ -35,21 +36,23 @@ class apiController extends Controller
         curl_setopt($curl, CURLOPT_URL, $url_personagem);
         $result = json_decode(curl_exec($curl), true);
         curl_close($curl);
-        $personagem = $result['data']['results'][0]['id'];
-//        dd($personagem);
+        $idPersonagem = $result['data']['results'][0]['id'];
+//        dd($idPersonagem);
 
-        $url_quadrinho = 'https://gateway.marvel.com:443/v1/public/characters/' . $personagem . '/comics?' . http_build_query($hq);
+        $url_quadrinho = 'https://gateway.marvel.com:443/v1/public/characters/' . $idPersonagem . '/comics?' . http_build_query($hq);
+
+//        dd($url_quadrinho);
 
         curl_setopt($curl, CURLOPT_URL, $url_quadrinho);
         $resultQuadrinho = json_decode(curl_exec($curl), true);
         curl_close($curl);
+//        dd($curl);
 
-        for($y = 0; $y <= 2; $y++){
-            $hqPersonagem = $resultQuadrinho['data']['results'][$y];
-            $y = $y++;
-        }
+//        for($y = 0; $y <= 2; $y++){
+//            $hqPersonagem = $resultQuadrinho['data']['results'][$y];
+//        }
 
-//        $hqPersonagem = $resultQuadrinho['data']['results'][1];
+        $hqPersonagem = $resultQuadrinho['data']['results'];
 //        dd($hqPersonagem);
 //        foreach($hqPersonagem as $title){
 //                 dd($title);
@@ -57,10 +60,10 @@ class apiController extends Controller
 
 //        dd($hqPersonagem);
 
-        return view('api.retorno', $hqPersonagem);
+        return view('api.retorno', compact('hqPersonagem'));
     }
 
-    public function queryParaRetorno($nameSearch)
+    public function queryParaRetorno()
     {
         $ts = time();
         $public_key = '8587449d89851b3a3d1392c699255da3';
@@ -74,7 +77,7 @@ class apiController extends Controller
             'ts' => $ts,
             'hash' => $hash,
         );
-
+//dd($queryQuadrinho);
         return $queryQuadrinho;
     }
 
@@ -92,5 +95,5 @@ class apiController extends Controller
     public function store(Request $request){
         return view('api.store');
     }
-    
+
 }

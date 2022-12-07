@@ -4,11 +4,18 @@
     <a href="/api/adicionarhq" class="btn btn-dark" style="position: relative; right: 540px">Voltar</a>
 </div>
     <body>
-    {{ $title }}
-    <figure>
-    <img src="{{$images[0]['path']}}.jpg">
-    </figure>
-
+    {{dd($hqPersonagem)}}
+    @foreach($hqPersonagem as $comic)
+{{--        {{dd($comic)}}--}}
+    <div>
+        {{ $comic['title'] }}
+    </div>
+        <div>
+            <figure>
+                <img src="{{$comic['images'][0]['path']}}.jpg">
+            </figure>
+        </div>
+    @endforeach
     </body>
 
 </x-layout>
