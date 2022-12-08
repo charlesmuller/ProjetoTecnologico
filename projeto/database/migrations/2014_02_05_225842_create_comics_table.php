@@ -15,12 +15,15 @@ return new class extends Migration
     {
         Schema::create('comics', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('collections_id')->nullable(true);
             $table->string('title_comic')->nullable();
             $table->string('caracter_comic')->nullable();
             $table->integer('edition_number_comic')->nullable();
             $table->date('release_year_comic')->nullable();
             $table->string('obs_comic')->nullable();
+            $table->string('img_data');
             $table->timestamps();
+            $table->foreign('collections_id')->references('id')->on('collections')->onDelete('cascade');
         });
     }
 

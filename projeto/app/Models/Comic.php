@@ -14,4 +14,11 @@ class Comic extends Model
     {
         return $this->belongsTo(Collection::class);
     }
+
+    protected $fillable = [
+        'title_comic',
+        'img_data'
+    ];
 }
+//'character_comic',
+//'edition_number',

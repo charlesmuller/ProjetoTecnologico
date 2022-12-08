@@ -11,7 +11,7 @@
             @foreach($comics as $comic)
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     <span class="badge bg-secondary">
-                    {{ $comic->id}}
+                    {{ $comic->edition_number_comic}}
                     </span>
                     <ul>{{ $comic->title_comic }}</ul>
                     <ul>{{ $comic->character_comic }}</ul>

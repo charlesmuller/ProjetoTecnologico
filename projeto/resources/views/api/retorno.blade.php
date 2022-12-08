@@ -7,19 +7,22 @@
 {{--    {{dd($hqPersonagem)}}--}}
     @foreach($hqPersonagem as $comic)
 {{--        {{dd($comic)}}--}}
-    <form action="{{ route('api.store') }}" method="post">
+    <form action="{{ route('api.store', $comic['title'], $comic['images']) }}" method="post">
         @csrf
-        <div id="title">
-            <input type='text' name='title' value={{$comic['title']}} hidden/>
-            {{ $comic['title'] }}
+        <div>
+            {{$comic['title'] }}
+{{--            {{dd($title)}}--}}
+            <input type='text' name='title' value={{$comic['title']}} />
         </div>
+        @if(!array_key_exists(0, $comic['images']))
+            <label>Sem imagem</label>
+        @else
             <div id="images">
-
                 <img src="{{ $img = $comic['images'][0]['path']}}.jpg">
                 <input type='text' name='images' value={{$img}} hidden/>
-
             </div>
-        <button class="btn btn-success btn-md" style="margin-top: 13px;"> Adicionar HQ </button>
+        @endif
+        <button class="btn btn-success btn-md"> Adicionar HQ </button>
     </form>
     @endforeach
     </body>
