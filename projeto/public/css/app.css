@@ -108,7 +108,7 @@ body {
 }
 
 .logo-ajuste-nav{
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 280px;
     width: 130px;

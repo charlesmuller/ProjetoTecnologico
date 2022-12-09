@@ -35,7 +35,7 @@
         </header>
     @endif
     <!-- Page Content -->
-    <div class="container text-center" style="width: 620px; margin: 50px auto 0px auto">
+    <div class="container text-center" style=" margin: 50px auto 0px auto">
         <h1>{{$title}}</h1> <BR>
         @if ($errors->any())
             <div class="alert alert-danger">
