@@ -27,6 +27,6 @@ class comicsController extends Controller
         });
         $colecao->push();
 
-        return to_route('comics.index', $colecao->id)->with('mensagem.sucesso', 'Quadrinhos marcados como lidos');
+        return to_route('comics.index', $colecao->id)->with('mensagem.sucesso', 'Quadrinho(s) marcado(s) como lido(s)');
     }
 }

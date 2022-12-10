@@ -25,6 +25,11 @@
             {{$mensagemSucesso}}
         </div>
     @endisset
+{{--    @isset($mensagem)--}}
+{{--        <div class="alert alert-success" style="text-align: center">--}}
+{{--            {{$mensagem}}--}}
+{{--        </div>--}}
+{{--    @endisset--}}
 
     <!-- Page Heading -->
     @if (isset($header))

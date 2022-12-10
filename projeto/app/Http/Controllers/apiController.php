@@ -50,13 +50,27 @@ class apiController extends Controller
 //        For para pegar todos os ids de personsagem que vem do results
 //        for($y = 0; $y <= 8; $y++){
 //            $idPersonagem[] = $result['data']['results'][$y]['id'];
+//            dd($idPersonagem);
+//        }
+
+        //valida se tem erro
+//        if ($result['data']['results'] == 0){
+//            $idPersonagem = $result['data']['results'][1]['id'];
+//
+//            $url_quadrinho = 'https://gateway.marvel.com:443/v1/public/characters/' . $idPersonagem . '/comics?' . http_build_query($hq);
+//
+//            curl_setopt($curl, CURLOPT_URL, $url_quadrinho);
+//            $resultQuadrinho = json_decode(curl_exec($curl), true);
+//            curl_close($curl);
+//
+//            if (!$resultQuadrinho['data']['results']){
+//                return to_route('api.add')->with('mensagem.erro', "Erro ao pesquisar personagem");
+//            }
+//
+//            $hqPersonagem = $resultQuadrinho['data']['results'];
+//            return view('api.retorno', compact('hqPersonagem'));
 //        }
         $idPersonagem = $result['data']['results'][0]['id'];
-
-//        for para pegar hqs de todos os ids de personagens que retornaram da pesquisa
-//        for($y = 0; $y <= 8; $y++){
-//            $url_quadrinho[] = 'https://gateway.marvel.com:443/v1/public/characters/' . $idPersonagem[$y] . '/comics?' . http_build_query($hq);
-//        }
         $url_quadrinho = 'https://gateway.marvel.com:443/v1/public/characters/' . $idPersonagem . '/comics?' . http_build_query($hq);
 
         curl_setopt($curl, CURLOPT_URL, $url_quadrinho);
@@ -67,22 +81,22 @@ class apiController extends Controller
             return to_route('api.add')->with('mensagem.erro', "Erro ao pesquisar personagem");
         }
 
+        $hqPersonagem = $resultQuadrinho['data']['results'];
+        return view('api.retorno', compact('hqPersonagem'));
+
+
+//        for para pegar hqs de todos os ids de personagens que retornaram da pesquisa
+//        for($y = 0; $y <= 8; $y++){
+//            $url_quadrinho[] = 'https://gateway.marvel.com:443/v1/public/characters/' . $idPersonagem[$y] . '/comics?' . http_build_query($hq);
+//        }
 //        for($y = 0; $y <= 9; $y++){
 //            $hqPersonagem[] = $resultQuadrinho['data']['results'][$y];
 //        }
-
 //       para validar se um hq não tem uma imagem
 //        $hqPersonagem = $resultQuadrinho['data']['results'];
-
-
-
-        $hqPersonagem = $resultQuadrinho['data']['results'];
 //        dd($hqPersonagem);
-
-        return view('api.retorno', compact('hqPersonagem'));
 //
 }
-
 //    função que retorna hqs conforme o id do personsagem pego na chamada acima linha 38
     public function queryParaRetorno()
     {
@@ -114,7 +128,7 @@ class apiController extends Controller
     }
 
     public function store(Request $request){
-        Comic::create($request->all());
+//        Comic::create($request->all());
 //        dd($request->title);
 
 //        $request->save();
