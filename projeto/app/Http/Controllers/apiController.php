@@ -2,11 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ColecaoFormRequest;
 use App\Models\Collection;
 use App\Models\Comic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\DB;
+
+function getIdCollection(ColecaoFormRequest $request)
+{
+    $idColecao = DB::table('collections')
+        ->select('id')
+        ->where('name_collection', '=', $idColecao)
+        ->get();
+}
 
 class apiController extends Controller
 {
@@ -123,20 +133,36 @@ class apiController extends Controller
 //        return view('api.retorno', ['result' => $dadosApi]);
 //    }
 
-    public function add(Request $request){
-        return view('api.add');
+    public function add(Request $request, Collection $colecao){
+
+//        dd($colecao->id);
+        return view('api.add')->with('colecao', $colecao);
     }
+
+
 
     public function store(Request $request){
-//        Comic::create($request->all());
-//        dd($request->title);
+//        $teste = getIdCollection(Collection::class);
+        $buscaIdColecao = Collection::query()->get();
+        $idColecao = $buscaIdColecao[0]['id'];
 
-//        $request->save();
-//        $title->title_comic = session()->get('title');
-//        $input = json_encode($input);
-//        $input->save();
+        $titulo = $request->title;
+        $imagem = $request->images;
 
+        $dadosRequest = new Comic();
+        $dadosRequest->title_comic = $titulo;
+        $dadosRequest->images = $imagem . '.jpg';
+        $dadosRequest->collections_id = $idColecao;
+//        dd($dadosRequest->images);
+        $dadosRequest->save();
+//
+////        $request->save();
+////        $title->title_comic = session()->get('title');
+////        $input = json_encode($input);
+////        $input->save();
+//
         return view('api.add');
     }
+
 
 }

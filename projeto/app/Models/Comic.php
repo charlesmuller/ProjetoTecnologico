@@ -17,7 +17,8 @@ class Comic extends Model
 
     protected $fillable = [
         'title_comic',
-        'img_data'
+        'img_data',
+        'collection_id'
     ];
 }
 //'character_comic',

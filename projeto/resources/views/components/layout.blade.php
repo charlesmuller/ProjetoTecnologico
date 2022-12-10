@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title>{{$title}}</title>
-
+    <title>Comic Collection - {{$title}}</title>
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <!-- Styles -->
@@ -40,8 +39,8 @@
         </header>
     @endif
     <!-- Page Content -->
-    <div class="container text-center" style=" margin: 50px auto 0px auto">
-        <h1>{{$title}}</h1> <BR>
+    <div class="container text-center" style="display: flex; margin: 50px auto 0px auto; align-items: center; flex-direction: column">
+        <h1>{{$title}}</h1>
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>

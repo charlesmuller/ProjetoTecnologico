@@ -36,7 +36,7 @@
                 <div class="row-01">
                     <div>{{ $comic->title_comic }}</div>
                     <div>{{ $comic->character_comic }}</div>
-                    <div><img src="{{$comic->img_data}}"></div>
+                    <div><img src="{{$comic->images}}"></div>
 
                     <div>
                         Lido?
@@ -46,30 +46,10 @@
                         <button class="btn btn-primary mt-2 mb-2">Salvar</button>
                     </div>
                 </div>
-                    {{--                para enviar a informação ao comicsController com o check do quadrinho lido--}}
+                    {{--para enviar a informação ao comicsController com o check do quadrinho lido--}}
             @endforeach
         </div>
     </form>
 </x-layout>
-{{--        <ul class="list-group" style="margin-top: 20px;">--}}
-{{--            <li class="list-group-item d-flex justify-content-between align-items-center" style="background-color: #DCDCDC; padding-left: 0">--}}
-{{--                <ul>Edicão</ul><ul>Título</ul><ul>Personagem</ul><ul>Lido?</ul>--}}
-{{--            </li>--}}
-
-{{--            @foreach($comics as $comic)--}}
-{{--                <li class="list-group-item d-flex justify-content-between align-items-center">--}}
-{{--                    <ul>{{ $comic->title_comic }}</ul>--}}
-{{--                    <ul>{{ $comic->character_comic }}</ul>--}}
-{{--                    <ul>{{$comic->img_data}}</ul>--}}
-{{--                    <input--}}
-{{--                        type="checkbox"--}}
-{{--                        name="comics[]"--}}
-{{--                        value="{{ $comic->id }}"--}}
-{{--                        @if($comic->readed_comic) checked @endif />--}}
-{{--    --}}{{--                para enviar a informação ao comicsController com o check do quadrinho lido--}}
-
-{{--                </li>--}}
-{{--            @endforeach--}}
-{{--        </ul>--}}
 
 

@@ -38,7 +38,7 @@
     </div>
         <div class="container">
             @foreach($hqPersonagem as $comic)
-                <form action="{{ route('api.store', $comic['title'], $comic['images']) }}" method="post">
+                <form action="{{ route('api.store', $comic) }}" method="post">
                     @csrf
                     <div class="row">
                         <div class="card-title">

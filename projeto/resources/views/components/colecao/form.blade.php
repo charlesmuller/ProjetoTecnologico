@@ -5,7 +5,7 @@
     @if($update)
         @method('PUT')
     @endif
-    <div class="group-form" style="position: absolute; width: 800px; right: 29%;">
+    <div class="group-form" style="position: absolute; width: 600px; right: 35%;">
         <label for="nome"></label>
         <input type="text"
                id="nome"
