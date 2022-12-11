@@ -1,5 +1,5 @@
-<x-layout title="Adicionar HQ na Coleção" >
-{{--    :mensagem="$mensagem"  ver mensagem de erro--}}
+<x-layout title="Adicionar HQ na Coleção " :mensagemSucesso="$mensagemSucesso" >
+
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <style>
         .boxInput{

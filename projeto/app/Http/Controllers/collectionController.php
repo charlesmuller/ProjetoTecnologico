@@ -33,8 +33,8 @@ class collectionController extends Controller
         return to_route('colecao.index')->with('mensagem.sucesso', "Coleção {$collection->name_collection} adicionada com sucesso!");
     }
 
-    public function destroy(Collection $colecao, Request $request){
-
+    public function destroy(Collection $colecao){
+        dd($colecao);
         $colecao->delete();
         return to_route('colecao.index')->with('mensagem.sucesso', "Coleção {$colecao->name_collection} removida com sucesso!");
     }

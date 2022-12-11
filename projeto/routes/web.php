@@ -21,7 +21,7 @@ Route::get('/', function () {
 });
 
 Route::resource('colecao', collectionController::class)
-    ->only(['index', 'create', 'store', 'destroy', 'edit', 'update']);
+    ->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
 
 Route::controller(apiController::class)->group(function () {
     Route::get('/api/adicionarhq','add')->name('api.add');

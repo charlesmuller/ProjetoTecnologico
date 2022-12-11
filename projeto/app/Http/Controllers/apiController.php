@@ -10,22 +10,14 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB;
 
-function getIdCollection(ColecaoFormRequest $request)
-{
-    $idColecao = DB::table('collections')
-        ->select('id')
-        ->where('name_collection', '=', $idColecao)
-        ->get();
-}
-
 class apiController extends Controller
 {
-    public function index(Request $request){
-
-        $comics = Comic::query()->get();
-        $mensagemErro = session('mensagem.erro');
-        return view('api.add')->with('comics', $comics)->with('mensagemErro', $mensagemErro);
-    }
+//    public function index(Request $request){
+//
+//        $comics = Comic::query()->get();
+//        $mensagemSucesso = session('mensagemSucesso');
+//        return view('api.add')->with('comics', $comics)->with('mensagemSucesso', $mensagemSucesso);
+//    }
 
     public function chamada(Request $request){
         $curl = curl_init();
@@ -44,7 +36,7 @@ class apiController extends Controller
         $queryPersonagem = array(
             'nameStartsWith' => $nameSearch,
             'orderBy' => "name",
-            'limit' => "10",
+            'limit' => "30",
             'apikey' => $public_key,
             'ts' => $ts,
             'hash' => $hash,
@@ -88,7 +80,7 @@ class apiController extends Controller
         curl_close($curl);
 
         if (!$resultQuadrinho['data']['results']){
-            return to_route('api.add')->with('mensagem.erro', "Erro ao pesquisar personagem");
+            return to_route('api.add')->with('mensagemSucesso', "Erro ao pesquisar personagem");
         }
 
         $hqPersonagem = $resultQuadrinho['data']['results'];
@@ -117,7 +109,7 @@ class apiController extends Controller
 
         $queryQuadrinho = array(
             'orderBy' => 'focDate',
-            'limit' => '10',
+            'limit' => '30',
             'apikey' => $public_key,
             'ts' => $ts,
             'hash' => $hash,
@@ -161,7 +153,7 @@ class apiController extends Controller
 ////        $input = json_encode($input);
 ////        $input->save();
 //
-        return view('api.add');
+        return to_route('api.add')->with('mensagem.sucesso', "HQ {$titulo} adicionada com sucesso!");;
     }
 
 
