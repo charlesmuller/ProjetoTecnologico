@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('name_collection', 128)->nullable();
             $table->foreignId('id_user_fk')->nullable(true);
             $table->foreign('id_user_fk')->references('id')->on('users');
+            $table->foreignId('id_comic_fk')->nullable(true);
+            $table->foreign('id_comic_fk')->references('id')->on('comics');
         });
     }
 

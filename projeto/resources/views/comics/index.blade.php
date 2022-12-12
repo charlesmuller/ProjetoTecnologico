@@ -24,6 +24,17 @@
             -webkit-box-shadow: 0px 0px 19px 7px rgba(0,0,0,0.62);
             -moz-box-shadow: 0px 0px 19px 7px rgba(0,0,0,0.62);
         }
+        .aviso-sem-hq{
+            margin-top: 10%;
+        }
+        .box-sem-hq{
+            position: absolute;
+            width: 1120.01px;
+            height: 0px;
+            left: 398px;
+            top: 512px;
+            border: 1px solid #000000;
+        }
     </style>
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <div>
@@ -48,6 +59,11 @@
                 </div>
                     {{--para enviar a informação ao comicsController com o check do quadrinho lido--}}
             @endforeach
+            @empty($comic)
+                <div class="aviso-sem-hq">
+                    <p class="box-sem-hq">Ainda não há quadrinhos</p>
+                </div>
+            @endempty
         </div>
     </form>
 </x-layout>

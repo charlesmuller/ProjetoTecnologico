@@ -34,7 +34,7 @@ class collectionController extends Controller
     }
 
     public function destroy(Collection $colecao){
-        dd($colecao);
+
         $colecao->delete();
         return to_route('colecao.index')->with('mensagem.sucesso', "Coleção {$colecao->name_collection} removida com sucesso!");
     }
@@ -49,5 +49,10 @@ class collectionController extends Controller
         $colecao->name_collection = $request->nome;
         $colecao->save();
         return to_route('colecao.index')->with('mensagem.sucesso', "Coleção {$colecao->name_collection} atualizada com sucesso");
+    }
+
+    public function show(Collection $colecao)
+    {
+        return view('colecao.destroy')->with('colecao', $colecao);
     }
 }

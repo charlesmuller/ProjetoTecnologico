@@ -20,8 +20,10 @@ Route::get('/', function () {
     return redirect('/login');
 });
 
+Route::resource('colecao', collectionController::class); //it call by itself all the defined seven method of the controller
+
 Route::resource('colecao', collectionController::class)
-    ->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
+    ->only(['index', 'create', 'store', 'edit', 'update', 'destroy', 'show']);
 
 Route::controller(apiController::class)->group(function () {
     Route::get('/api/adicionarhq','add')->name('api.add');

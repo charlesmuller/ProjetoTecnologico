@@ -12,12 +12,12 @@ use Illuminate\Support\Facades\DB;
 
 class apiController extends Controller
 {
-//    public function index(Request $request){
-//
-//        $comics = Comic::query()->get();
-//        $mensagemSucesso = session('mensagemSucesso');
-//        return view('api.add')->with('comics', $comics)->with('mensagemSucesso', $mensagemSucesso);
-//    }
+    public function index(Comic $comics){
+
+        $comics = Comic::query()->get();
+        $mensagemSucesso = session('mensagem.sucesso');
+        return view('api.add')->with('comics', $comics)->with('mensagemSucesso', $mensagemSucesso);
+    }
 
     public function chamada(Request $request){
         $curl = curl_init();
@@ -36,7 +36,7 @@ class apiController extends Controller
         $queryPersonagem = array(
             'nameStartsWith' => $nameSearch,
             'orderBy' => "name",
-            'limit' => "30",
+            'limit' => "50",
             'apikey' => $public_key,
             'ts' => $ts,
             'hash' => $hash,
@@ -80,7 +80,7 @@ class apiController extends Controller
         curl_close($curl);
 
         if (!$resultQuadrinho['data']['results']){
-            return to_route('api.add')->with('mensagemSucesso', "Erro ao pesquisar personagem");
+            return to_route('api.add')->with('mensagem.sucesso', "Erro ao pesquisar personagem");
         }
 
         $hqPersonagem = $resultQuadrinho['data']['results'];
@@ -109,34 +109,24 @@ class apiController extends Controller
 
         $queryQuadrinho = array(
             'orderBy' => 'focDate',
-            'limit' => '30',
+            'limit' => '50',
             'apikey' => $public_key,
             'ts' => $ts,
             'hash' => $hash,
         );
-//dd($queryQuadrinho);
+
         return $queryQuadrinho;
     }
 
-//    public function retorno($result){
-//        $dadosApi = $this->chamada($result);
-//        $persongem = $dadosApi= ['data' => 'results'];
-//            dd($persongem);
-//        return view('api.retorno', ['result' => $dadosApi]);
-//    }
+    public function add(Collection $colecao){
 
-    public function add(Request $request, Collection $colecao){
-
-//        dd($colecao->id);
         return view('api.add')->with('colecao', $colecao);
     }
 
-
-
     public function store(Request $request){
-//        $teste = getIdCollection(Collection::class);
-        $buscaIdColecao = Collection::query()->get();
-        $idColecao = $buscaIdColecao[0]['id'];
+
+        $pegaIdColecao = Collection::query()->get();
+        $idColecao = $pegaIdColecao[0]['id'];
 
         $titulo = $request->title;
         $imagem = $request->images;
@@ -145,16 +135,9 @@ class apiController extends Controller
         $dadosRequest->title_comic = $titulo;
         $dadosRequest->images = $imagem . '.jpg';
         $dadosRequest->collections_id = $idColecao;
-//        dd($dadosRequest->images);
+
         $dadosRequest->save();
-//
-////        $request->save();
-////        $title->title_comic = session()->get('title');
-////        $input = json_encode($input);
-////        $input->save();
-//
-        return to_route('api.add')->with('mensagem.sucesso', "HQ {$titulo} adicionada com sucesso!");;
+
+        return to_route('colecao.index')->with('mensagem.sucesso', "HQ {$titulo} adicionada com sucesso!");;
     }
-
-
 }

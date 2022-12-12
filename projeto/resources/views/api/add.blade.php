@@ -1,5 +1,4 @@
-<x-layout title="Adicionar HQ na Coleção " :mensagemSucesso="$mensagemSucesso" >
-
+<x-layout title="Adicionar HQ na Coleção" >
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <style>
         .boxInput{
@@ -26,3 +25,7 @@
     </div>
     </body>
 </x-layout>
+{{--:mensagem-sucesso="$mensagemSucesso"--}}
+{{--@if (session('mensagemSucesso'))--}}
+{{--    <p>{{ session('mensagemSucesso') }}</p>--}}
+{{--@endif--}}
