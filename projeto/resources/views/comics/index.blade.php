@@ -14,11 +14,10 @@
             justify-content: center;
             background: #D9D9D9;
             color: #000000;
-            padding: 0% 0% 12% 0%;
-            margin: 8% 0% -9% 0%;
+            margin: 0% 0% 0% 0%;
             border-width: 7px 7px 7px 7px;
             border-style: solid;
-            width: 114%;
+            width: 120%;
             -webkit-box-shadow: 0px 0px 19px 7px rgba(0,0,0,0.62);
             -moz-box-shadow: 0px 0px 19px 7px rgba(0,0,0,0.62);
             line-height: 120%;
@@ -28,7 +27,7 @@
         .box-imagem-hq{
             max-width: 84%;
             border-width: 6px;
-            margin: 3% 12% 6% 4%;
+            margin: 5% 8% 0% 3%;
         }
         .box-imagem-hq img{
             width: 100%;
@@ -47,15 +46,17 @@
         }
         .box-personagem{
             display: flex;
-            margin: 7% 77% 10% -4%;
+            margin: 7% -1% 18% 1%;
             justify-content: left;
-            padding: 3% 1% 4% 4%;
+            padding: 0% 0% 3% 1%;
+            border-style: solid;
+            border-bottom-width: 5px;
         }
         .box-grade-interna{
             display: grid;
             align-content: stretch;
-            max-width: 105%;
-            margin: 2% 0% -19% -7%;
+            max-width: 107%;
+            margin: 3% 0% 2% -10%;
             text-align: right;
             border-width: 6px;
         }
@@ -72,8 +73,9 @@
             margin-bottom: 1rem;
         }
         .box-interno-texto-personagem2{
-            margin: 1% 11% 2rem 6%;
+            margin: 1% -14% 21% 10%;
             padding: 0% 0% 0% 0%;
+        }
         }
         .aviso-sem-hq{
             margin-top: 10%;
@@ -92,7 +94,10 @@
         }
         .box-lido{
             font-size: 16px;
-            margin: 0% 0% 0% 0%;
+            margin: 0% 45% 4% 4%;
+        }
+        .box-botao-salvar{
+            margin: -26% 64% 0% 0%;
         }
     </style>
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
