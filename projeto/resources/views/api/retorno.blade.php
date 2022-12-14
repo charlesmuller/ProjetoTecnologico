@@ -88,7 +88,7 @@
                 <form action="{{ route('api.store', $comic )}}" method="post">
                     @csrf
                     <div class="grade">
-                        <div class="card-imagem" style="">
+                        <div class="card-imagem">
                             @if(!array_key_exists(0, $comic['images']))
                                 <label>Sem imagem</label>
                             @else

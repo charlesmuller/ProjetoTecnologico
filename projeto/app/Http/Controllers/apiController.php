@@ -87,18 +87,16 @@ class apiController extends Controller
     }
 
     public function store(Request $request){
-//        $titulo = $request['title'];
-//        dd($titulo);
 
         $pegaIdColecao = Collection::query()->get();
+
         $idColecao = $pegaIdColecao[0]['id'];
         $personagem = $request['characters']['items'][0]['name'];
-        $titulo = $request['title'];
+        $titulo = $request->query->get('title');
         $imagem = $request->images;
 
-//        dd($titulo);
-
         $dadosRequest = new Comic();
+
         $dadosRequest->character_comic = $personagem;
         $dadosRequest->title_comic = $titulo;
         $dadosRequest->images = $imagem . '.jpg';
@@ -106,8 +104,9 @@ class apiController extends Controller
 
         $dadosRequest->save();
 
-        return to_route('colecao.index')->with('mensagem.sucesso', "HQ {$titulo} adicionada com sucesso!");;
+        return to_route('colecao.index')->with('mensagem.sucesso', "HQ {$titulo} adicionada com sucesso!");
     }
+
 }
 
 

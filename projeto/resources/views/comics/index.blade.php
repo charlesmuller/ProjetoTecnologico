@@ -3,13 +3,12 @@
         .container-01{
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
-            grid-gap: 62px;
-            margin: 46px auto -54px auto;
+            grid-gap: 85px;
+            margin: 38px auto auto auto;
             align-items: center;
             align-content: center;
         }
         .row-01{
-
             display: grid;
             grid-template-columns: 1fr 1fr;
             justify-content: center;
@@ -19,15 +18,17 @@
             margin: 8% 0% -9% 0%;
             border-width: 7px 7px 7px 7px;
             border-style: solid;
-            width: 110%;
+            width: 114%;
             -webkit-box-shadow: 0px 0px 19px 7px rgba(0,0,0,0.62);
             -moz-box-shadow: 0px 0px 19px 7px rgba(0,0,0,0.62);
             line-height: 120%;
+            align-items: stretch;
+            justify-items: stretch;
         }
         .box-imagem-hq{
             max-width: 84%;
             border-width: 6px;
-            margin: 3% 10% -19% 4%;
+            margin: 3% 12% 6% 4%;
         }
         .box-imagem-hq img{
             width: 100%;
@@ -39,9 +40,9 @@
         }
         .box-titulo{
             display: flex;
-            padding: 7% 25% 5% 43%;
-            margin: -4% 15% -10% -40%;
-            justify-content: left;
+            padding: 15%;
+            margin: -1%;
+            justify-content: right;
             border-bottom-width: 6px;
         }
         .box-personagem{
@@ -58,11 +59,21 @@
             text-align: right;
             border-width: 6px;
         }
-        .box-lido{
-
+        .box-titulo-texto-interno{
+            font-size: 16px;
+            margin-right: -8%;
+            margin-top: 0;
+            margin-bottom: 1rem;
         }
-        .box-botao-salvar{
-
+        .box-interno-titulo-2{
+            font-size: 16px;
+            margin-right: -8%;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+        .box-interno-texto-personagem2{
+            margin: 1% 11% 2rem 6%;
+            padding: 0% 0% 0% 0%;
         }
         .aviso-sem-hq{
             margin-top: 10%;
@@ -75,10 +86,13 @@
             top: 512px;
             border: 1px solid #000000;
         }
-        .info-titulo{
-            margin-top: 0;
-            margin-bottom: 1rem;
-            margin-right: 6%;
+        .box-interno-nome-personagem2{
+            font-size: 16px;
+            margin: 0% -50% -21% 19%;
+        }
+        .box-lido{
+            font-size: 16px;
+            margin: 0% 0% 0% 0%;
         }
     </style>
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
@@ -95,12 +109,12 @@
                     </div>
                     <div class="box-grade-interna">
                         <div class="box-titulo">
-                            <p class="info-titulo">Titulo:</p>
-                            <p>{{ $comic->title_comic }}</p>
+                            <p class="box-titulo-texto-interno">Titulo:</p>
+                            <p class="box-interno-titulo-2">{{ $comic->title_comic }}</p>
                         </div>
                         <div class="box-personagem">
-                            <p>Personagem: </p>
-                            <p>{{ $comic->character_comic }}</p>
+                            <p class="box-interno-texto-personagem2">Personagem:</p>
+                            <p class="box-interno-nome-personagem2">{{ $comic->character_comic }}</p>
                         </div>
                         <div class="box-lido">
                             <p>Lido?</p>
