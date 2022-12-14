@@ -87,13 +87,17 @@ class apiController extends Controller
 
     public function store(Request $request){
 
+        $extensao = $request['images']
+        dd($request);
+
         $pegaIdColecao = Collection::query()->get();
         $idColecao = $pegaIdColecao[0]['id'];
-
+        $personagem = $request['characters']['items'][0]['name'];
         $titulo = $request->title;
         $imagem = $request->images;
 
         $dadosRequest = new Comic();
+        $dadosRequest->character_comic = $personagem;
         $dadosRequest->title_comic = $titulo;
         $dadosRequest->images = $imagem . '.jpg';
         $dadosRequest->collections_id = $idColecao;

@@ -23,25 +23,39 @@
             -moz-box-shadow: 0px 0px 19px 7px rgba(0,0,0,0.62);
             line-height: 120%;
         }
+        .card-imagem{
+            max-width: 84%;
+            border-width: 6px;
+            margin: 3% 12% 6% 4%;
+        }
+        .box-container-imagem img{
+            width: 100%;
+            display: block;
+            transition: transform 0.5s;
+        }
+        .box-container-imagem:hover img{
+            transform: scale(2.5);
+        }
         .card-title{
             display: flex;
-            padding: 3%;
-            margin: 9%;
+            padding: 15%;
+            margin: -1%;
             justify-content: right;
+            border-bottom-width: 6px;
         }
         .card-personagem{
             display: flex;
-            margin: 4% 54% 0% -4%;
+            margin: 7% 77% 10% -4%;
             justify-content: left;
-        }
-        .card-imagem{
-            float: right;
-            max-width: 187px;
+            padding: 3% 1% 4% 4%;
         }
         .grade-interna{
-            max-width: 90%;
-            margin-left: 0%;
+            display: grid;
+            align-content: stretch;
+            max-width: 105%;
+            margin: 2% 0% -19% -7%;
             text-align: right;
+            border-width: 6px;
         }
         .box-interno-texto-titulo{
             font-size: 16px;
@@ -64,7 +78,6 @@
             margin: 0% -50% -21% 19%;
         }
 
-
     </style>
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <div>
@@ -72,8 +85,6 @@
     </div>
         <div class="container-principal">
             @foreach($hqPersonagem as $comic)
-{{--                {{dd($comic)}}--}}
-
                 <form action="{{ route('api.store', $comic) }}" method="post">
                     @csrf
                     <div class="grade">
@@ -81,27 +92,24 @@
                             @if(!array_key_exists(0, $comic['images']))
                                 <label>Sem imagem</label>
                             @else
-                                <div>
-                                    <img src="{{ $img = $comic['images'][0]['path']}}.jpg">
+                                <div class="box-container-imagem">
+                                    <img src="{{ $img = $comic['images'][0]['path','extension']}}.jpg">
                                     <input type='text' name='images' value="{{$img}}" hidden/>
                                 </div>
                             @endif
                         </div>
-
                         <div class="grade-interna">
                             <div class="card-title">
                                 <p class="box-interno-texto-titulo">Titulo:</p>
                                 <p class="box-interno-titulo">{{$comic['title']}}</p>
                                 <input type='text' name='title' value="{{$comic['title']}}" hidden />
                             </div>
-
                             <div class="card-personagem">
                                 <p class="box-interno-texto-personagem">Personagem:</p>
                                 <p class="box-interno-nome-personagem">{{$comic['characters']['items'][0]['name']}}</p>
                                 <input type='text' name='title' value="{{$comic['characters']['items'][0]['name']}}" hidden />
                             </div>
                         </div>
-
                         <div style="margin-top: 10px">
                             <button class="btn btn-success btn-md"> Adicionar </button>
                         </div>
@@ -110,39 +118,3 @@
            @endforeach
         </div>
 </x-layout>
-
-
-
-{{--<div class="container">--}}
-{{--    @foreach($hqPersonagem as $comic)--}}
-{{--        --}}{{--                {{dd($comic)}}--}}
-
-{{--        <form action="{{ route('api.store', $comic) }}" method="post">--}}
-{{--            @csrf--}}
-{{--            <div class="row">--}}
-{{--                <div class="card-title">--}}
-{{--                    <h2 style="font-size: 20px">{{$comic['title']}}</h2>--}}
-{{--                    <input type='text' name='title' value="{{$comic['title']}}" hidden />--}}
-{{--                </div>--}}
-{{--                <div class="">--}}
-{{--                    <h3 style="font-size: 20px">{{$comic['characters']['items'][0]['name']}}</h3>--}}
-{{--                    <input type='text' name='title' value="{{$comic['characters']['items'][0]['name']}}" hidden />--}}
-{{--                </div>--}}
-{{--                <div class="card-imagem" style="float: right; max-width: 150px">--}}
-{{--                    @if(!array_key_exists(0, $comic['images']))--}}
-{{--                        <label>Sem imagem</label>--}}
-{{--                    @else--}}
-{{--                        <div>--}}
-{{--                            <img src="{{ $img = $comic['images'][0]['path']}}.jpg">--}}
-{{--                            <input type='text' name='images' value="{{$img}}" hidden/>--}}
-{{--                        </div>--}}
-{{--                    @endif--}}
-
-{{--                </div>--}}
-{{--                <div style="margin-top: 10px">--}}
-{{--                    <button class="btn btn-success btn-md"> Adicionar </button>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </form>--}}
-{{--    @endforeach--}}
-{{--</div>--}}
