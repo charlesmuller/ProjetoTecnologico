@@ -85,7 +85,7 @@
     </div>
         <div class="container-principal">
             @foreach($hqPersonagem as $comic)
-                <form action="{{ route('api.store', $comic) }}" method="post">
+                <form action="{{ route('api.store', $comic )}}" method="post">
                     @csrf
                     <div class="grade">
                         <div class="card-imagem" style="">
@@ -93,21 +93,21 @@
                                 <label>Sem imagem</label>
                             @else
                                 <div class="box-container-imagem">
-                                    <img src="{{ $img = $comic['images'][0]['path','extension']}}.jpg">
-                                    <input type='text' name='images' value="{{$img}}" hidden/>
+                                    <img src="{{ $comic['images'][0]['path'] }}.jpg">
+                                    <input type='text' name='images' value="{{ $comic['images'][0]['path'] }}" hidden/>
                                 </div>
                             @endif
                         </div>
                         <div class="grade-interna">
                             <div class="card-title">
                                 <p class="box-interno-texto-titulo">Titulo:</p>
-                                <p class="box-interno-titulo">{{$comic['title']}}</p>
-                                <input type='text' name='title' value="{{$comic['title']}}" hidden />
+                                <p class="box-interno-titulo">{{ $comic['title'] }}</p>
+                                <input type='text' name='title' value="{{ $comic['title'] }}" hidden />
                             </div>
                             <div class="card-personagem">
                                 <p class="box-interno-texto-personagem">Personagem:</p>
-                                <p class="box-interno-nome-personagem">{{$comic['characters']['items'][0]['name']}}</p>
-                                <input type='text' name='title' value="{{$comic['characters']['items'][0]['name']}}" hidden />
+                                <p class="box-interno-nome-personagem">{{ $comic['characters']['items'][0]['name'] }}</p>
+                                <input type='text' name='title' value="{{ $comic['characters']['items'][0]['name'] }}" hidden />
                             </div>
                         </div>
                         <div style="margin-top: 10px">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Collection;
 use App\Models\Comic;
 use Illuminate\Http\Request;
+use MongoDB\Driver\Query;
 
 class apiController extends Controller
 {
@@ -86,15 +87,16 @@ class apiController extends Controller
     }
 
     public function store(Request $request){
-
-        $extensao = $request['images']
-        dd($request);
+//        $titulo = $request['title'];
+//        dd($titulo);
 
         $pegaIdColecao = Collection::query()->get();
         $idColecao = $pegaIdColecao[0]['id'];
         $personagem = $request['characters']['items'][0]['name'];
-        $titulo = $request->title;
+        $titulo = $request['title'];
         $imagem = $request->images;
+
+//        dd($titulo);
 
         $dadosRequest = new Comic();
         $dadosRequest->character_comic = $personagem;

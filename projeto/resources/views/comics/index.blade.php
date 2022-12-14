@@ -15,8 +15,8 @@
             justify-content: center;
             background: #D9D9D9;
             color: #000000;
-            padding: 0%;
-            margin-bottom: 6%;
+            padding: 0% 0% 12% 0%;
+            margin: 8% 0% -9% 0%;
             border-width: 7px 7px 7px 7px;
             border-style: solid;
             width: 110%;
@@ -27,7 +27,7 @@
         .box-imagem-hq{
             max-width: 84%;
             border-width: 6px;
-            margin: 3% 12% 6% 4%;
+            margin: 3% 10% -19% 4%;
         }
         .box-imagem-hq img{
             width: 100%;
@@ -39,9 +39,9 @@
         }
         .box-titulo{
             display: flex;
-            padding: 15%;
-            margin: -1%;
-            justify-content: right;
+            padding: 7% 25% 5% 43%;
+            margin: -4% 15% -10% -40%;
+            justify-content: left;
             border-bottom-width: 6px;
         }
         .box-personagem{
@@ -75,6 +75,11 @@
             top: 512px;
             border: 1px solid #000000;
         }
+        .info-titulo{
+            margin-top: 0;
+            margin-bottom: 1rem;
+            margin-right: 6%;
+        }
     </style>
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <div>
@@ -90,12 +95,12 @@
                     </div>
                     <div class="box-grade-interna">
                         <div class="box-titulo">
-                            <p>Titulo:</p>
-                            {{ $comic->title_comic }}
+                            <p class="info-titulo">Titulo:</p>
+                            <p>{{ $comic->title_comic }}</p>
                         </div>
                         <div class="box-personagem">
-                            <p>Personagem</p>
-                            {{ $comic->character_comic }}
+                            <p>Personagem: </p>
+                            <p>{{ $comic->character_comic }}</p>
                         </div>
                         <div class="box-lido">
                             <p>Lido?</p>
