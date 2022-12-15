@@ -1,6 +1,6 @@
 # Projeto Tecnologico
 
-### Para executar o projeto:
+### Para executar o projeto em localhost:
     - git clone no projeto do github
     - rode no terminal: sudo apt-get install php-dom
     - Rode no terminal: composer install --ignore-platform-reqs
@@ -12,40 +12,11 @@
 
 Gerenciador de Coleção de HQ
 - Features
-	- Busca por histórias (número da edição, ano de lançamento, titulos, personagens etc);
+	- Busca por histórias (titulos, personagens);
 	- Área de leitura, usuário pode marcar o que está lendo e qual página parou (bookmark);
-	- Favoritos;
-	- Criação de um algum com sagas expecíficas (ex: Cria um album do Homem-Aranha e adiciona as HQ que possui desse personagem);
+	- Criação de um álbum com sagas expecíficas (ex: Cria um album do Homem-Aranha e adiciona as HQ que possui desse personagem);
 
 
 API MARVEL
 --- https://developer.marvel.com/docs
-
-Ideia
---- https://www.youtube.com/watch?v=MCJRmZSmIQk
---- https://www.youtube.com/watch?v=_OYW_rQzi3E
---- https://greensock.com/gsap/
---- https://datatables.net/extensions/responsive/examples/child-rows/custom-renderer.html
-
-- cURL 
-  - sudo apt-get install php-curl
-  - Ativar: sudo phpenmod curl
-  - Desativar: sudo phpdismod curl
-  - Reestartar o apache: sudo /etc/init.d/apache2 restart
-  - Verificar se está ativo: php -i | grep -i curl
-
-- Instalação do node.js
---- sudo apt install nodejs
-- Instação LaravelMix
---- npm install laravel-mix --save-dev
-- Composer
---- composer require laravel/jetstream 
-- Instalação jetstream
---- php artisan jetstream:install livewire
-- Após o jetstream rodar
---- npm install 
---- npm run dev
-
-charlesmuller02
-135078Mu
 
