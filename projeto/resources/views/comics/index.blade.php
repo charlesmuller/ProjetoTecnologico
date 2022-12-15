@@ -3,9 +3,8 @@
         .container-01{
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
-            grid-gap: 85px;
-            margin: 38px auto auto auto;
-            align-items: center;
+            grid-gap: 106px;
+            margin: 73px 5% auto auto;
             align-content: center;
         }
         .row-01{
@@ -21,13 +20,12 @@
             -webkit-box-shadow: 0px 0px 19px 7px rgba(0,0,0,0.62);
             -moz-box-shadow: 0px 0px 19px 7px rgba(0,0,0,0.62);
             line-height: 120%;
-            align-items: stretch;
-            justify-items: stretch;
+            align-items: center;
         }
         .box-imagem-hq{
-            max-width: 84%;
+            max-width: 100%;
             border-width: 6px;
-            margin: 5% 8% 0% 3%;
+            margin: -9% 14% -9% 6%;
         }
         .box-imagem-hq img{
             width: 100%;
@@ -35,18 +33,18 @@
             transition: transform 0.5s;
         }
         .box-imagem-hq:hover img{
-            transform: scale(2.5);
+            transform: scale(1.7);
         }
         .box-titulo{
             display: flex;
-            padding: 15%;
-            margin: -8% 0% -7% -3%;
+            padding: 12%;
+            margin: -11% 0% -8% 0%;
             justify-content: right;
             border-bottom-width: 6px;
         }
         .box-personagem{
             display: flex;
-            margin: 9% 2% 0% -3%;
+            margin: 9% 0% 0% 0%;
             justify-content: left;
             padding: 0% 0% 3% 1%;
             border-style: solid;
@@ -62,7 +60,7 @@
         }
         .box-titulo-texto-interno{
             font-size: 16px;
-            margin-right: -8%;
+            margin-right: 1%;
             margin-top: 0;
             margin-bottom: 1rem;
         }
@@ -73,7 +71,7 @@
             margin-bottom: 1rem;
         }
         .box-interno-texto-personagem2{
-            margin: 1% -14% 21% 10%;
+            margin: 2% -19% 22% 9%;
             padding: 0% 0% 0% 0%;
         }
         }
@@ -90,13 +88,12 @@
         }
         .box-interno-nome-personagem2{
             font-size: 16px;
-            margin: 1% -50% -21% 19%;
-        }
-        .box-lido{
-            margin: 0% 55% 1% 0%;
+            margin: 2% 2% -3% 19%;
         }
         .box-botao-salvar{
-            margin: -25% 16% 0% 0%;
+            position: relative;
+            margin: -26% 22% 0% -4%;
+            left: -72px;
         }
     </style>
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
@@ -120,19 +117,18 @@
                             <p class="box-interno-texto-personagem2">Personagem:</p>
                             <p class="box-interno-nome-personagem2">{{ $comic->character_comic }}</p>
                         </div>
-                        <div>
-                            <p>Lido?</p>
-                            <label>
+                        <div >
+                            <p style="position: relative; left: -62px;">Lido?</p>
+                            <label style="position: relative; left: -72px;">
                                 <input type="checkbox" name="comics[]" value="{{ $comic->id }}" @if($comic->readed_comic) checked @endif />
                             </label>
                         </div>
 
                         <div class="box-botao-salvar">
-                            <button class="btn btn-primary mt-2 mb-2">Salvar</button>
+                            <button class="btn btn-primary mt-2 mb-2" style="width: 31%; height: 55%; font-size: 12px; text-align: center;">Salvar</button>
                         </div>
                     </div>
                 </div>
-                    {{--para enviar a informação ao comicsController com o check do quadrinho lido--}}
             @endforeach
             @empty($comic)
                 <div class="aviso-sem-hq">

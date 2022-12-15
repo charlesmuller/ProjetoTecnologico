@@ -8,25 +8,19 @@ use Illuminate\Http\Request;
 
 class comicsController extends Controller
 {
-    public function index(Collection $colecao)
-    {
+    public function index(Collection $colecao) {
         return view('comics.index', [
             'comics' => $colecao->comics,
             'mensagemSucesso' => session('mensagem.sucesso')
         ]);
     }
 
-    public function readed(Request $request, Collection $colecao)
-    {
-//        dd($request->comics);
+    public function readed(Request $request, Collection $colecao) {
         $readedComics = $request->comics;
-
         $colecao->comics->each(function (Comic $comic) use ($readedComics){
-
             $comic->readed_comic = in_array($comic->id, $readedComics);
         });
         $colecao->push();
-
         return to_route('comics.index', $colecao->id)->with('mensagem.sucesso', 'Quadrinho(s) marcado(s) como lido(s)');
     }
 }
