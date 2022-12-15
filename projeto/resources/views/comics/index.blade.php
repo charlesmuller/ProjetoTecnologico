@@ -40,13 +40,13 @@
         .box-titulo{
             display: flex;
             padding: 15%;
-            margin: -1%;
+            margin: -8% 0% -7% -3%;
             justify-content: right;
             border-bottom-width: 6px;
         }
         .box-personagem{
             display: flex;
-            margin: 7% -1% 18% 1%;
+            margin: 9% 2% 0% -3%;
             justify-content: left;
             padding: 0% 0% 3% 1%;
             border-style: solid;
@@ -90,14 +90,13 @@
         }
         .box-interno-nome-personagem2{
             font-size: 16px;
-            margin: 0% -50% -21% 19%;
+            margin: 1% -50% -21% 19%;
         }
         .box-lido{
-            font-size: 16px;
-            margin: 0% 45% 4% 4%;
+            margin: 0% 55% 1% 0%;
         }
         .box-botao-salvar{
-            margin: -26% 64% 0% 0%;
+            margin: -25% 16% 0% 0%;
         }
     </style>
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
@@ -121,10 +120,13 @@
                             <p class="box-interno-texto-personagem2">Personagem:</p>
                             <p class="box-interno-nome-personagem2">{{ $comic->character_comic }}</p>
                         </div>
-                        <div class="box-lido">
+                        <div>
                             <p>Lido?</p>
-                            <input type="checkbox" name="comics[]" value="{{ $comic->id }}" @if($comic->readed_comic) checked @endif />
+                            <label>
+                                <input type="checkbox" name="comics[]" value="{{ $comic->id }}" @if($comic->readed_comic) checked @endif />
+                            </label>
                         </div>
+
                         <div class="box-botao-salvar">
                             <button class="btn btn-primary mt-2 mb-2">Salvar</button>
                         </div>

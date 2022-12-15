@@ -18,7 +18,7 @@ class comicsController extends Controller
 
     public function readed(Request $request, Collection $colecao)
     {
-//        dd($colecao->comics);
+//        dd($request->comics);
         $readedComics = $request->comics;
 
         $colecao->comics->each(function (Comic $comic) use ($readedComics){

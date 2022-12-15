@@ -5,30 +5,25 @@ namespace App\Http\Controllers;
 use App\Models\Collection;
 use App\Models\Comic;
 use Illuminate\Http\Request;
-use MongoDB\Driver\Query;
+use function PHPUnit\Framework\isEmpty;
 
 class apiController extends Controller
 {
-    public function index(Comic $comics){
-
-        $comics = Comic::query()->get();
-        $mensagemSucesso = session('mensagem.sucesso');
-        return view('api.add')->with('comics', $comics)->with('mensagemSucesso', $mensagemSucesso);
-    }
-
     public function chamada(Request $request){
+
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 
-        $nameSearch = htmlentities(strtolower($request->name));  // HuLk == hulk
+        $nameSearch = htmlentities(strtolower($request->name));
 
         //pega os dados de quadrinhos baseados no id do personagem. O id do personsagem é pego mais abaixo
         $hq = $this->queryParaRetorno();
 
         $ts = time();
-        $public_key = '8587449d89851b3a3d1392c699255da3';
-        $private_key = '925acf924ea4582935c159e6195ecc13b9e349d5';
+        $public_key = getenv('PUBLIC_KEY_MARVEL');
+        $private_key = getenv('PRIVATE_KEY_MARVEL');
         $hash = md5($ts . $private_key . $public_key);
+
 
         $queryPersonagem = array(
             'nameStartsWith' => $nameSearch,
@@ -36,8 +31,8 @@ class apiController extends Controller
             'limit' => "50",
             'apikey' => $public_key,
             'ts' => $ts,
-            'hash' => $hash,
-        );
+            'hash' => $hash
+            );
 
         //Pega o id do personagem
         $url_personagem = 'https://gateway.marvel.com:443/v1/public/characters?' . http_build_query($queryPersonagem);
@@ -46,6 +41,9 @@ class apiController extends Controller
         $result = json_decode(curl_exec($curl), true);
         curl_close($curl);
 
+        if (isEmpty($result)){
+            return to_route('api.add')->with('mensagem.sucesso', "Erro ao pesquisar personagem (ERRO 401 API)");
+        }
         $idPersonagem = $result['data']['results'][0]['id'];
         $url_quadrinho = 'https://gateway.marvel.com:443/v1/public/characters/' . $idPersonagem . '/comics?' . http_build_query($hq);
 
@@ -55,10 +53,13 @@ class apiController extends Controller
 
         //Para pegar erro se acaso a pesquisa não retornar nada (ainda não funciona a mensagem)
         if (!$resultQuadrinho['data']['results']){
-            return to_route('api.add')->with('mensagem.sucesso', "Erro ao pesquisar personagem");
+            return to_route('api.add')->with('mensagem.sucesso', "Erro ao pesquisar personagem, não encontrado");
         }
 
         $hqPersonagem = $resultQuadrinho['data']['results'];
+        if (isEmpty($hqPersonagem)){
+            return to_route('api.add')->with('mensagem.sucesso', "Erro ao pesquisar quadrinho");
+        }
 
         return view('api.retorno', compact('hqPersonagem'));
 }
@@ -66,8 +67,8 @@ class apiController extends Controller
     public function queryParaRetorno()
     {
         $ts = time();
-        $public_key = '8587449d89851b3a3d1392c699255da3';
-        $private_key = '925acf924ea4582935c159e6195ecc13b9e349d5';
+        $public_key = 'a7a498d56f5ad76c0b1457c9b7928819';
+        $private_key = 'c9b23bb12332c927576978ba7269165fa048b471';
         $hash = md5($ts . $private_key . $public_key);
 
         $queryQuadrinho = array(
@@ -83,7 +84,11 @@ class apiController extends Controller
 
     public function add(Collection $colecao){
 
-        return view('api.add')->with('colecao', $colecao);
+        $comics = Comic::query()->get();
+        $mensagemSucesso = session('mensagem.sucesso');
+        return view('api.add')->with('comics', $comics)->with('mensagemSucesso', $mensagemSucesso);
+
+//        return view('api.add')->with('colecao', $colecao);
     }
 
     public function store(Request $request){
