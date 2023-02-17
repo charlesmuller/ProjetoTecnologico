@@ -18,6 +18,8 @@ class EloquentCollectionRepository implements CollectionRepository
             $nameCollection = $request->nome;
             $collection = new Collection();
             $collection->name_collection = $nameCollection;
+            $collection->id_user_fk = auth()->user()->id;
+//            dd($collection->user);
             $collection->save();
 
             return $collection;

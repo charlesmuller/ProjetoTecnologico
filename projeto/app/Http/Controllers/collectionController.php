@@ -16,8 +16,11 @@ class collectionController extends Controller
     }
     public function index(Request $request) {
         $colecoes = Collection::query()->get();
+        $colecoesUsuario = json_decode(Collection::where('id_user_fk', auth()->user()->id)->get(), true);
+//        dd($colecoesUsuario);
         $mensagemSucesso = session('mensagem.sucesso');
-        return view('colecao.index')->with('colecoes', $colecoes)->with('mensagemSucesso', $mensagemSucesso);
+//        return view('colecao.index')->with('colecoes', $colecoes, $colecoesUsuario)->with('mensagemSucesso', $mensagemSucesso);
+        return view('colecao.index', compact('colecoesUsuario', 'colecoes', 'mensagemSucesso'));
     }
 
     public function create() {
@@ -26,6 +29,7 @@ class collectionController extends Controller
 
     //ColecaoFormRequest do método store faz a validação dos campos enviados pelo formulário
     public function store(ColecaoFormRequest $request) {
+//        $userDados->id_user_fk = auth()->user()->id;
         $collection = $this->repository->add($request);
         return to_route('colecao.index')->with('mensagem.sucesso', "Coleção {$collection->name_collection} adicionada com sucesso!");
     }

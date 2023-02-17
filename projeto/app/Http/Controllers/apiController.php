@@ -41,7 +41,7 @@ class apiController extends Controller
         $result = json_decode(curl_exec($curl), true);
         curl_close($curl);
 
-        if (isEmpty($result)){
+        if (empty($result)){
             return to_route('api.add')->with('mensagem.sucesso', "Erro ao pesquisar personagem (ERRO 401 API)");
         }
         $idPersonagem = $result['data']['results'][0]['id'];
@@ -51,13 +51,14 @@ class apiController extends Controller
         $resultQuadrinho = json_decode(curl_exec($curl), true);
         curl_close($curl);
 
+
         //Para pegar erro se acaso a pesquisa não retornar nada (ainda não funciona a mensagem)
         if (!$resultQuadrinho['data']['results']){
             return to_route('api.add')->with('mensagem.sucesso', "Erro ao pesquisar personagem, não encontrado");
         }
 
         $hqPersonagem = $resultQuadrinho['data']['results'];
-        if (isEmpty($hqPersonagem)){
+        if (empty($hqPersonagem)){
             return to_route('api.add')->with('mensagem.sucesso', "Erro ao pesquisar quadrinho");
         }
 
@@ -73,7 +74,7 @@ class apiController extends Controller
 
         $queryQuadrinho = array(
             'orderBy' => '-focDate',
-            'limit' => '50',
+            'limit' => '10',
             'apikey' => $public_key,
             'ts' => $ts,
             'hash' => $hash,
@@ -105,6 +106,7 @@ class apiController extends Controller
         $dadosRequest->title_comic = $titulo;
         $dadosRequest->images = $imagem . '.jpg';
         $dadosRequest->collections_id = $idColecao;
+//        $dadosRequest->id_user_fk = auth()->user()->id;
 
         $dadosRequest->save();
 

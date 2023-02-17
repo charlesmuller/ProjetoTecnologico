@@ -50,40 +50,43 @@
         <li class="list-group-item d-flex justify-content-between align-items-center boxTitulos">
             <ul class="box-dados-colecao1">Id</ul> <ul class="box-dados-colecao2">Nome</ul> <ul class="box-dados-colecao3">Ações</ul>
         </li>
-        @foreach($colecoes as $colecao)
-            <li class="list-group-item d-flex justify-content-between align-items-center boxDadosColecao" style="">
-                <div>{{$colecao->id}}</div>
 
-                <div style="margin-right: -126px;">{{$colecao->name_collection}}</div>
+        @if(!empty($colecoesUsuario))
+            @foreach($colecoes as $colecao)
+                <li class="list-group-item d-flex justify-content-between align-items-center boxDadosColecao" style="">
+                    <div>{{$colecao->id}}</div>
 
-                <div class="btn-group botaoDown">
-                    <button type="button" class="btn btn-primary">
-                        <a href="{{ route('comics.index', $colecao->id) }}" style="color: white; text-decoration: none; font-size: 20px">Ver Coleção</a>
-                    </button>
-                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="caret"></span>
-                        <span class="sr-only"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="{{ route('colecao.edit', $colecao->id) }} " class="btn btn-dark" style="font-size: 20px"> Editar Coleção </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('api.add', $colecao->id) }}" class="btn btn-info btn-md" style="margin-top: 13px; font-size: 20px"> Adicionar HQ </a>
-                        </li>
-                        @if($colecao->id)
-                        <li style="margin-top: 11px;">
-                            <a href="{{ route('colecao.show', $colecao->id) }} " class="btn btn-danger" style="font-size: 20px"> Remover Coleção </a>
-                        </li>
-                        @endif
-                    </ul>
+                    <div style="margin-right: -126px;">{{$colecao->name_collection}}</div>
+
+                    <div class="btn-group botaoDown">
+                        <button type="button" class="btn btn-primary">
+                            <a href="{{ route('comics.index', $colecao->id) }}" style="color: white; text-decoration: none; font-size: 20px">Ver Coleção</a>
+                        </button>
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="caret"></span>
+                            <span class="sr-only"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="{{ route('colecao.edit', $colecao->id) }} " class="btn btn-dark" style="font-size: 20px"> Editar Coleção </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('api.add', $colecao->id) }}" class="btn btn-info btn-md" style="margin-top: 13px; font-size: 20px"> Adicionar HQ </a>
+                            </li>
+                            @if($colecao->id)
+                            <li style="margin-top: 11px;">
+                                <a href="{{ route('colecao.show', $colecao->id) }} " class="btn btn-danger" style="font-size: 20px"> Remover Coleção </a>
+                            </li>
+                            @endif
+                        </ul>
+                    </div>
+                </li>
+            @endforeach
+        @endif
+            @empty($colecao)
+                <div class="aviso-sem-colecao">
+                    <p class="box-sem-colecao">Ainda não há coleções</p>
                 </div>
-            </li>
-        @endforeach
-        @empty($colecao)
-            <div class="aviso-sem-colecao">
-                <p class="box-sem-colecao">Ainda não há coleções</p>
-            </div>
-        @endempty
+            @endempty
     </ul>
 </x-layout>
