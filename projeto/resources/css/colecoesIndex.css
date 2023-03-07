@@ -1,0 +1,43 @@
+.containerColecao{
+    width: 848px;
+    margin: 20px auto;
+}
+.botaoCriar{
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    font-size: 20px;
+    margin-top: 3%;
+}
+.boxTitulos{
+    border: 5px solid rgba(0, 0, 0, .025);
+    font-size: 20px;
+    background-color: #d9d9d9
+}
+.boxDadosColecao{
+    border: 5px solid rgba(0, 0, 0, .125);
+    font-size: 25px
+}
+.botaoDown {
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+}
+.aviso-sem-colecao{
+    margin-top: 10%;
+}
+.box-sem-colecao{
+    position: absolute;
+    width: 845px;
+    height: 0px;
+    left: 537px;
+    top: 512px;
+    border: 1px solid #000000;
+}
+.box-dados-colecao1{
+    margin-left: -23px
+}
+.box-dados-colecao2{
+    margin-left: 82px
+}
+.box-dados-colecao3{
+    margin-right: 58px
+}

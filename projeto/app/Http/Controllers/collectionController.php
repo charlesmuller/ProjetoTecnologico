@@ -15,11 +15,9 @@ class collectionController extends Controller
 
     }
     public function index(Request $request) {
-        $colecoes = Collection::query()->get();
+        $colecoes = Collection::where('id_user_fk', auth()->user()->id)->get();
         $colecoesUsuario = json_decode(Collection::where('id_user_fk', auth()->user()->id)->get(), true);
-//        dd($colecoesUsuario);
         $mensagemSucesso = session('mensagem.sucesso');
-//        return view('colecao.index')->with('colecoes', $colecoes, $colecoesUsuario)->with('mensagemSucesso', $mensagemSucesso);
         return view('colecao.index', compact('colecoesUsuario', 'colecoes', 'mensagemSucesso'));
     }
 
