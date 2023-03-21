@@ -14,12 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('collections', function (Blueprint $table) {
-            $table->id()->autoIncrement();
+            $table->id();
             $table->string('name_collection', 128)->nullable();
-            $table->foreignId('id_user_fk')->nullable(true);
-            $table->foreign('id_user_fk')->references('id')->on('users');
-            $table->foreignId('id_comic_fk')->nullable(true);
-            $table->foreign('id_comic_fk')->references('id')->on('comics');
+            $table->foreignId('user_id')->nullable(true);
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

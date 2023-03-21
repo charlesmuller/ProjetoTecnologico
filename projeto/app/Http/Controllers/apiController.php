@@ -9,78 +9,87 @@ use function PHPUnit\Framework\isEmpty;
 
 class apiController extends Controller
 {
-    public function chamada(Request $request){
+    public function chamada(Request $request)
+    {
+        try {
+            $nameSearch = strtolower($request->input('name'));
+            $idPersonagem = $this->getCharacterId($nameSearch);
+    
+            if (!$idPersonagem) {
+                return redirect()->route('api.add')->with('mensagem.erro', 'Personagem não encontrado');
+            }
+    
+            $hqPersonagem = $this->getCharacterComics($idPersonagem);
+            if (empty($hqPersonagem)) {
+                return redirect()->route('api.add')->with('mensagem.erro', 'Quadrinhos do personagem não encontrados');
+            }
+    
+            return view('api.retorno', compact('hqPersonagem'));
+    
+        } catch (Exception $e) {
+            return redirect()->route('api.add')->with('mensagem.erro', $e->getMessage());
+        }
+    }
 
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-
-        $nameSearch = htmlentities(strtolower($request->name));
-
-        //pega os dados de quadrinhos baseados no id do personagem. O id do personsagem é pego mais abaixo
-        $hq = $this->queryParaRetorno();
-
+    private function getCharacterId($nameSearch)
+    {
         $ts = time();
-        $public_key = getenv('PUBLIC_KEY_MARVEL');
-        $private_key = getenv('PRIVATE_KEY_MARVEL');
+        $public_key = env('PUBLIC_KEY_MARVEL');
+        $private_key = env('PRIVATE_KEY_MARVEL');
         $hash = md5($ts . $private_key . $public_key);
-
-
-        $queryPersonagem = array(
+    
+        $url_personagem = 'https://gateway.marvel.com:443/v1/public/characters';
+        $queryPersonagem = [
             'nameStartsWith' => $nameSearch,
-            'orderBy' => "name",
-            'limit' => "50",
+            'orderBy' => 'name',
+            'limit' => 1,
             'apikey' => $public_key,
             'ts' => $ts,
             'hash' => $hash
-            );
-
-        //Pega o id do personagem
-        $url_personagem = 'https://gateway.marvel.com:443/v1/public/characters?' . http_build_query($queryPersonagem);
-
-        curl_setopt($curl, CURLOPT_URL, $url_personagem);
-        $result = json_decode(curl_exec($curl), true);
-        curl_close($curl);
-
-        if (empty($result)){
-            return to_route('api.add')->with('mensagem.sucesso', "Erro ao pesquisar personagem (ERRO 401 API)");
+        ];
+        
+        $result = $this->makeRequest($url_personagem, $queryPersonagem);
+    
+        if (empty($result['data']['results'])) {
+            throw new Exception('Personagem não encontrado.');
         }
-        $idPersonagem = $result['data']['results'][0]['id'];
-        $url_quadrinho = 'https://gateway.marvel.com:443/v1/public/characters/' . $idPersonagem . '/comics?' . http_build_query($hq);
+    
+        return $result['data']['results'][0]['id'];
+    }
+    
 
-        curl_setopt($curl, CURLOPT_URL, $url_quadrinho);
-        $resultQuadrinho = json_decode(curl_exec($curl), true);
-        curl_close($curl);
-
-
-        //Para pegar erro se acaso a pesquisa não retornar nada (ainda não funciona a mensagem)
-        if (!$resultQuadrinho['data']['results']){
-            return to_route('api.add')->with('mensagem.sucesso', "Erro ao pesquisar personagem, não encontrado");
-        }
-
-        $hqPersonagem = $resultQuadrinho['data']['results'];
-        if (empty($hqPersonagem)){
-            return to_route('api.add')->with('mensagem.sucesso', "Erro ao pesquisar quadrinho");
-        }
-
-        return view('api.retorno', compact('hqPersonagem'));
-}
-//    função que retorna hqs conforme o id do personsagem pego na chamada acima linha 38
-    public function queryParaRetorno()
+    private function getCharacterComics($idPersonagem)
     {
         $ts = time();
-        $public_key = getenv('PUBLIC_KEY_MARVEL');
-        $private_key = getenv('PRIVATE_KEY_MARVEL');
+        $public_key = env('PUBLIC_KEY_MARVEL');
+        $private_key = env('PRIVATE_KEY_MARVEL');
         $hash = md5($ts . $private_key . $public_key);
 
-        $queryQuadrinho = array(
+        $url_quadrinho = "https://gateway.marvel.com:443/v1/public/characters/{$idPersonagem}/comics";
+        $queryQuadrinho = [
             'orderBy' => '-focDate',
-            'limit' => '10',
+            'limit' => 10,
             'apikey' => $public_key,
             'ts' => $ts,
             'hash' => $hash,
-        );
+        ];
 
-        return $queryQuadrinho;
+        $result = $this->makeRequest($url_quadrinho, $queryQuadrinho);
+
+        if (empty($result['data']['results'])) {
+            return [];
+        }
+
+        return $result['data']['results'];
+    }
+
+    private function makeRequest($url, $query)
+    {
+        $client = new \GuzzleHttp\Client();
+        $response = $client->get($url, ['query' => $query]);
+        $result = json_decode($response->getBody(), true);
+        
+        return $result;
     }
 
     public function add(Collection $colecao){
@@ -92,10 +101,9 @@ class apiController extends Controller
     }
 
     public function store(Request $request){
+        $collection = Collection::where('user_id', auth()->user()->id)->get();
+        $collection_id = $collection[0]['id'];        
 
-        $pegaIdColecao = Collection::query()->get();
-
-        $idColecao = $pegaIdColecao[0]['id'];
         $personagem = $request['characters']['items'][0]['name'];
         $titulo = $request->query->get('title');
         $imagem = $request->images;
@@ -105,8 +113,7 @@ class apiController extends Controller
         $dadosRequest->character_comic = $personagem;
         $dadosRequest->title_comic = $titulo;
         $dadosRequest->images = $imagem . '.jpg';
-        $dadosRequest->collections_id = $idColecao;
-//        $dadosRequest->id_user_fk = auth()->user()->id;
+        $dadosRequest->collection_id = $collection_id;
 
         $dadosRequest->save();
 

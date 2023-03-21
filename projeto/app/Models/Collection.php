@@ -13,7 +13,7 @@ class Collection extends Model
 
     public function comics()
     {
-        return $this->hasMany(Comic::class, 'collections_id');
+        return $this->hasMany(Comic::class, 'collection_id');
     }
 
     protected static function booted()

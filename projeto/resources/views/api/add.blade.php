@@ -1,4 +1,7 @@
 <x-layout title="Adicionar HQ na Coleção" :mensagem-sucesso="$mensagemSucesso">
+    @if(session('mensagem.erro'))
+        <div class="alert alert-danger">{{ session('mensagem.erro') }}</div>
+    @endif
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <style>
         .boxInput{
@@ -25,7 +28,3 @@
     </div>
     </body>
 </x-layout>
-
-{{--@if (session('mensagemSucesso'))--}}
-{{--    <p>{{ session('mensagemSucesso') }}</p>--}}
-{{--@endif--}}
